@@ -5,6 +5,7 @@ import {
   IconButton,
   Button,
   Stack,
+  Center,
   Heading,
   Spacer,
   Collapse,
@@ -39,7 +40,7 @@ export const NavBar = () => {
         align={"center"}
       >
         <Flex>
-          <Box p={2}>
+          <Box>
             <Heading size="md" color={useColorModeValue("gray.800", "white")}>
               Yale Clubs
             </Heading>
