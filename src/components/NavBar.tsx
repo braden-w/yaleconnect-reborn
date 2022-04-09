@@ -17,7 +17,7 @@ import {
   useColorModeValue,
   Stack,
 } from "@chakra-ui/react"
-import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons"
+import { HamburgerIcon, CloseIcon, AddIcon, SearchIcon } from "@chakra-ui/icons"
 
 const Links = ["Dashboard", "Projects", "Team"]
 
@@ -68,9 +68,9 @@ export function NavBar() {
               colorScheme={"teal"}
               size={"sm"}
               mr={4}
-              leftIcon={<AddIcon />}
+              leftIcon={<SearchIcon />}
             >
-              Action
+              Explore
             </Button>
             <Menu>
               <MenuButton
