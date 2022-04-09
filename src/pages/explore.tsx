@@ -60,8 +60,8 @@ export async function getStaticProps() {
   // Pass clubs to the page via props
   return {
     props: {clubs},
-    // Revalidates the page every hour
-    revalidate: 60 * 60,
+    // Revalidates the page every 10 seconds
+    revalidate: 10,
   }
 }
 
