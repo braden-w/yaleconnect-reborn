@@ -10,6 +10,7 @@ export interface Club {
   address: null | string;
   benefits: null | string;
   goals: null | string;
+  mission: null | string;
   constitution: null | string;
   officers: Officer[];
 }

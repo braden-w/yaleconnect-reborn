@@ -1,39 +1,34 @@
-import {Link as ChakraLink, Text, SimpleGrid, Box} from "@chakra-ui/react"
+import {Text, SimpleGrid, Box} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
-import {ClubCardTemplate} from "../components/clubCardTemplate"
-import {dummy} from "../components/dummy"
-import {FilterButton} from "../components/filterButton"
-import {useState} from "react"
+import {ClubCardTemplate} from "../components/ClubCard"
+import {useMemo, useState} from "react"
 import {Club} from "../types/Club"
 
 
+const filterList = (query, list) => {
+  if (query === '') return list
+  return list.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())) ||
+    list.filter((club) => club.goals.toLowerCase().includes(query.toLowerCase())) ||
+    list.filter((club) => club.type.toLowerCase().includes(query.toLowerCase()))
+
+}
 const Explore = ({clubs}: {clubs: Club[]}) => {
   const [searchQuery, setSearchQuery] = useState("")
-  const handleSearchInput = (event) => setSearchQuery(event.target.value)
-  let filteredClubs = clubs;
-  if (searchQuery !== "") {
-    filteredClubs =
-      clubs.filter(club => {
-        // Check if club.name, club.goals, club.type
-        return (
-          club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (club.goals && club.goals.toLowerCase().includes(searchQuery.toLowerCase())) ||
-          (club.type && club.type.toLowerCase().includes(searchQuery.toLowerCase()))
-        )
-      })
-  }
+  const setSearchInput = (event) => setSearchQuery(event.target.value)
+  const onSearchInputChanged = useMemo(() => debounce(setSearchInput, 500), [searchQuery])
+  const filteredClubs = filterList(searchQuery, clubs);
 
   return (
     <>
-      <NavBar handleSearchInput={handleSearchInput} />
+      <NavBar onSearchInputChanged={onSearchInputChanged} />
       <Container>
       </Container>
       {/* <Hero /> */}
       <Box p='5'>
         <SimpleGrid
-          minChildWidth='270px'
+          minChildWidth='280px'
           spacing='2'
         >
           {filteredClubs.map((club) => (<ClubCardTemplate club={club} />))}
@@ -60,7 +55,25 @@ export async function getStaticProps() {
   const clubs = await res.json()
 
   // Pass clubs to the page via props
-  return {props: {clubs}}
+  return {
+    props: {clubs},
+    // Revalidates the page every 10 seconds
+    revalidate: 10,
+  }
 }
 
 export default Explore
+
+// Debounce function call
+function debounce(debouncedFunction, milliseconds) {
+  let timeoutId;
+  return function (...args) {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      debouncedFunction.apply(this, args);
+    }, milliseconds);
+  };
+}
+
