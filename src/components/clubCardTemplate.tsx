@@ -26,10 +26,13 @@ export function ClubCardTemplate({club}:{club:Club}){
           mx={-6}
           mb={3}
           pos={'relative'}>
-          <Image
-            src={club.logo}  
-            layout={'fill'}
-          />
+          {/* Render an image only if club.logo is not null */}
+          {club.logo && (
+            <Image
+              src={club.logo}
+              layout={'fill'}
+            />
+          )}
         </Box>
         <Stack>
           <Heading
