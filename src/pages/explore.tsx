@@ -17,7 +17,6 @@ const Explore = ({ clubs }: { clubs: Club[] }) => {
     <>
       <NavBar handleSearchInput={handleSearchInput} />
       <Container>
-        {searchQuery}
         <FilterButton />
       </Container>
         {/* <Hero /> */}
