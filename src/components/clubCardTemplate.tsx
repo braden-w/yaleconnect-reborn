@@ -27,7 +27,7 @@ export function ClubCardTemplate({club}:{club:Club}){
           mb={3}
           pos={'relative'}>
           <Image
-            src={club.image}  
+            src={club.logo}  
             layout={'fill'}
           />
         </Box>
@@ -42,7 +42,7 @@ export function ClubCardTemplate({club}:{club:Club}){
             {club.name}
           </Heading>
           <Text color={'gray.500'} noOfLines={2} >
-            {club.description}
+            {club.goals}
           </Text>
         </Stack>
       </Box>
