@@ -11,7 +11,6 @@ import {
   Link,
 } from '@chakra-ui/react';
 import {Club} from '../types/Club';
-import {useState} from 'react';
 
 export function ClubCardTemplate({club}: {club: Club}) {
   return (
