@@ -25,7 +25,8 @@ const Explore = ({ clubs }: { clubs: Club[] }) => {
           minChildWidth='320px'
           spacing='5'
         >
-          {clubs.map((club) => (<ClubCardTemplate club={club} />))}
+        {clubs.filter(club => club.name.toLowerCase().includes(searchQuery.toLowerCase()))
+          .map((club) => (<ClubCardTemplate club={club} />))}
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
