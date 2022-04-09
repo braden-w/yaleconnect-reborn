@@ -65,7 +65,7 @@ export async function getStaticProps() {
 export default Explore
 
 // Debounce function call
-function debounce(debouncedFunction, timeInSeconds) {
+function debounce(debouncedFunction, milliseconds) {
   let timeoutId;
   return function (...args) {
     if (timeoutId) {
@@ -73,7 +73,7 @@ function debounce(debouncedFunction, timeInSeconds) {
     }
     timeoutId = setTimeout(() => {
       debouncedFunction.apply(this, args);
-    }, timeInSeconds * 1000);
+    }, milliseconds);
   };
 }
 
