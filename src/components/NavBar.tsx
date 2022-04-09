@@ -15,6 +15,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Input,
 } from "@chakra-ui/react"
 
 import {
@@ -62,7 +63,8 @@ export const NavBar = () => {
           >
             Yale Clubs
           </Text>
-          <Spacer />
+
+          <Input placeholder="Search Clubs..." variant="outline" />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
