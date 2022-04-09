@@ -8,8 +8,9 @@ import {
   Avatar,
   useColorModeValue,
 } from '@chakra-ui/react';
+import {Club} from '../types/Club';
 
-export function ClubCardTemplate({clubInfo}){
+export function ClubCardTemplate({club}:{club:Club}){
   return (
     <Center py={6}>
       <Box
@@ -26,7 +27,7 @@ export function ClubCardTemplate({clubInfo}){
           mb={3}
           pos={'relative'}>
           <Image
-            src={clubInfo.image}  
+            src={club.image}  
             layout={'fill'}
           />
         </Box>
@@ -38,10 +39,10 @@ export function ClubCardTemplate({clubInfo}){
             fontSize={'2xl'}
             fontWeight={800}
             letterSpacing={1.1}>
-            {clubInfo.name}
+            {club.name}
           </Heading>
           <Text color={'gray.500'} noOfLines={2} >
-            {clubInfo.description}
+            {club.description}
           </Text>
         </Stack>
       </Box>
