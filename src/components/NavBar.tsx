@@ -64,7 +64,7 @@ export function NavBar() {
 
             <SearchBar />
 
-            {/* <HStack
+            <HStack
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
@@ -72,7 +72,7 @@ export function NavBar() {
               {Links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
-            </HStack> */}
+            </HStack>
           </HStack>
           {/* <Flex alignItems={"center"}>
             <DarkModeSwitch />
