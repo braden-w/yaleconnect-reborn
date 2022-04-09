@@ -47,8 +47,8 @@ export default function Home() {
             </Stack>
           </Stack>
         </Flex>
-        <Flex flex={1}>
-          <Image alt={"Login Image"} objectFit={"cover"} src={partyPicture} />
+        <Flex p={8} flex={1}>
+          <Image alt={"Login Image"} src={partyPicture} />
         </Flex>
       </Stack>
     </Box>
