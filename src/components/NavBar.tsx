@@ -305,4 +305,4 @@ const NAV_ITEMS: Array<NavItem> = [
   },
 ]
 
-export default Header
+export default NavBar
