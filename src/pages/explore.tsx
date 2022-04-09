@@ -1,10 +1,8 @@
-import {Link as ChakraLink, Text, SimpleGrid, Box} from "@chakra-ui/react"
+import {Text, SimpleGrid, Box} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
 import {ClubCardTemplate} from "../components/ClubCard"
-import {dummy} from "../components/dummy"
-import {FilterButton} from "../components/filterButton"
 import {useState} from "react"
 import {Club} from "../types/Club"
 
