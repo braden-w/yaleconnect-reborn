@@ -18,6 +18,7 @@ export function ClubCardTemplate({club}: {club: Club}) {
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'xl'}
         rounded={'md'}
+        p={6}
         height={'360px'}
         width={'360px'}
         overflow={'hidden'}>
