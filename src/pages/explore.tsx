@@ -3,7 +3,7 @@ import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
 import {ClubCardTemplate} from "../components/ClubCard"
-import {useState} from "react"
+import {useMemo, useState} from "react"
 import {Club} from "../types/Club"
 
 
@@ -16,7 +16,8 @@ const filterList = (query, list) => {
 }
 const Explore = ({clubs}: {clubs: Club[]}) => {
   const [searchQuery, setSearchQuery] = useState("")
-  const onSearchInputChanged = (event) => setSearchQuery(event.target.value)
+  const setSearchInput = (event) => setSearchQuery(event.target.value)
+  const onSearchInputChanged = useMemo(() => setSearchInput, [searchQuery])
   const filteredClubs = filterList(searchQuery, clubs);
 
   return (
