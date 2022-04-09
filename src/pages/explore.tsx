@@ -58,7 +58,11 @@ export async function getStaticProps() {
   const clubs = await res.json()
 
   // Pass clubs to the page via props
-  return {props: {clubs}}
+  return {
+    props: {clubs},
+    // Revalidates the page every hour
+    revalidate: 60 * 60,
+  }
 }
 
 export default Explore
