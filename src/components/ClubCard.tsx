@@ -50,7 +50,7 @@ export function ClubCardTemplate({club}: {club: Club}) {
             letterSpacing={1.1}>
             {club.name}
           </Heading>
-          <Text color={'gray.500'} noOfLines={2} >
+          <Text color={'gray.500'} noOfLines={[1, 2]} >
             {club.type}
           </Text>
           {/* External link to club.website */}
