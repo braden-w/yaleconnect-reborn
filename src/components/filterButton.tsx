@@ -22,7 +22,7 @@ export const FilterButton = () => {
                 Filters
             </MenuButton>
             <MenuList>
-                <Stack spacing={5} direction='column'>
+                <Stack spacing={5} direction='column' p={4}>
                     <Checkbox>Checkbox</Checkbox>
                     <Checkbox>Checkbox</Checkbox>
                 </Stack>
