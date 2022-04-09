@@ -38,4 +38,20 @@ const Explore = () => {
   )
 }
 
+// This gets called on every request
+export async function getStaticProps() {
+  // Fetch data from external API
+  const res = await fetch("https://yaleorgs.com/api/organizations", {
+    method: "POST",
+    headers: {
+      Authorization:
+        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDk1MTk4MzAsInN1YiI6ImJtdzUyIn0.5EDjGl1x-fum37VsQzjcWphGODQU-Mg1CtPGJddQ9Yk",
+    },
+  })
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
+}
+
 export default Explore
