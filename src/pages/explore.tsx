@@ -21,16 +21,18 @@ const Explore = ({ clubs }: { clubs: Club[] }) => {
         <FilterButton />
       </Container>
         {/* <Hero /> */}
-        <SimpleGrid
-          minChildWidth='320px'
-          spacing='5'
-        >
-        {clubs.filter(club => club.name.toLowerCase().includes(searchQuery.toLowerCase()))
-          .map((club) => (<ClubCardTemplate club={club} />))}
-        </SimpleGrid>
-        <Footer>
-          <Text>Built with ❤ and ☕</Text>
-        </Footer>
+        <Box p='5'>
+          <SimpleGrid
+            minChildWidth='320px'
+            spacing='5'
+          >
+          {clubs.filter(club => club.name.toLowerCase().includes(searchQuery.toLowerCase()))
+            .map((club) => (<ClubCardTemplate club={club} />))}
+          </SimpleGrid>
+          <Footer>
+            <Text>Built with ❤ and ☕</Text>
+          </Footer>
+        </Box>
       
     </>
   )
