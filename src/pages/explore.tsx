@@ -27,19 +27,20 @@ const Explore = () => {
       {searchQuery}
       <Container height="100vh">
         <Hero />
-        <SimpleGrid 
-        minChildWidth='250px' 
-        spacing={18} 
-        spacingX={5} 
-        spacingY={5} 
-        maxWidth="90%">
-            <ClubCardTemplate />
-            <ClubCardTemplate />
-            <ClubCardTemplate />
-            <ClubCardTemplate />
-            <ClubCardTemplate />
-            <ClubCardTemplate />
-            <ClubCardTemplate />
+        <SimpleGrid
+          minChildWidth="250px"
+          spacing={18}
+          spacingX={5}
+          spacingY={5}
+          maxWidth="90%"
+        >
+          <ClubCardTemplate />
+          <ClubCardTemplate />
+          <ClubCardTemplate />
+          <ClubCardTemplate />
+          <ClubCardTemplate />
+          <ClubCardTemplate />
+          <ClubCardTemplate />
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>

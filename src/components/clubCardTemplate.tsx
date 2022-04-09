@@ -13,8 +13,6 @@ export function ClubCardTemplate() {
   return (
     <Center py={6}>
       <Box
-        maxW={'xs'}
-        w={'full'}
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'md'}
         rounded={'lg'}
