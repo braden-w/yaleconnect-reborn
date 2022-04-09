@@ -267,21 +267,6 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Inspiration",
-    children: [
-      {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
-      },
-    ],
-  },
-  {
     label: "Find Work",
     children: [
       {
@@ -305,4 +290,3 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "#",
   },
 ]
-
