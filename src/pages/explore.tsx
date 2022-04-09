@@ -7,7 +7,28 @@ import { dummy } from "../components/dummy"
 import { FilterButton } from "../components/filterButton"
 import { useState } from "react"
 
-const Explore = () => {
+export interface Clubs {
+  id: number
+  name: string
+  type: string
+  category: null | string
+  email: null | string
+  website: null | string
+  phone: null | string
+  logo: null | string
+  address: null | string
+  benefits: null | string
+  goals: null | string
+  constitution: null | string
+  officers: Officer[]
+}
+
+export interface Officer {
+  name: string
+  email: string
+}
+
+const Explore = ({ data }: { data: Clubs }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const handleSearchInput = (event) => setSearchQuery(event.target.value)
 
