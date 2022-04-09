@@ -7,21 +7,17 @@ import {useState} from "react"
 import {Club} from "../types/Club"
 
 
+const filterList = (query, data) => {
+  if (query === '') return data
+  return data.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())) ||
+    data.filter((club) => club.goals.toLowerCase().includes(query.toLowerCase())) ||
+    data.filter((club) => club.type.toLowerCase().includes(query.toLowerCase()))
+
+}
 const Explore = ({clubs}: {clubs: Club[]}) => {
   const [searchQuery, setSearchQuery] = useState("")
   const handleSearchInput = (event) => setSearchQuery(event.target.value)
-  let filteredClubs = clubs;
-  if (searchQuery !== "") {
-    filteredClubs =
-      clubs.filter(club => {
-        // Check if club.name, club.goals, club.type
-        return (
-          club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (club.goals && club.goals.toLowerCase().includes(searchQuery.toLowerCase())) ||
-          (club.type && club.type.toLowerCase().includes(searchQuery.toLowerCase()))
-        )
-      })
-  }
+  const filteredList = filterList(searchQuery, clubs);
 
   return (
     <>
