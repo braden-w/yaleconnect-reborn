@@ -14,8 +14,6 @@ import {Club} from '../types/Club';
 import {useState} from 'react';
 
 export function ClubCardTemplate({club}: {club: Club}) {
-  const [show, setShow] = useState(false);
-  const showText = () => setShow(!show);
   return (
     <Center py={6}>
       <Box
@@ -61,11 +59,8 @@ export function ClubCardTemplate({club}: {club: Club}) {
             <Text color={'blue.500'}>Website</Text>
           </Link>
           {/* Insert text for club.mission. It should have a button that says "Show more" after cutting the text off */}
-          <Text color={'gray.500'} noOfLines={show ? 10 : [1, 2]}>
+          <Text color={'gray.500'} noOfLines={[1, 2]}>
             {club.mission}
-          </Text>
-          <Text color={'gray.500'} onClick={showText} >
-            Show More
           </Text>
 
         </Stack>
