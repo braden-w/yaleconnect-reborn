@@ -15,7 +15,7 @@ import { DarkModeSwitch } from "../components/DarkModeSwitch"
 import { CTA } from "../components/CTA"
 import { Footer } from "../components/Footer"
 
-const Index = () => (
+const Explore = () => (
   <Container height="100vh">
     <Hero />
     <Main>
@@ -53,4 +53,4 @@ const Index = () => (
   </Container>
 )
 
-export default Index
+export default Explore
