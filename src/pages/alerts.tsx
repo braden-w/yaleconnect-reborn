@@ -1,0 +1,120 @@
+import {NavBar} from "../components/NavBar"
+import {useState} from "react"
+import {
+    Box,
+    Button,
+    Flex,
+    Heading,
+    Stack,
+    Text,
+    Textarea,
+    useColorModeValue,
+    Input,
+    InputGroup,
+    InputLeftElement,
+    FormControl,
+    FormLabel,
+    FormErrorMessage,
+    FormHelperText,
+    Grid,
+    GridItem,
+  } from "@chakra-ui/react"
+
+import { PhoneIcon } from "@chakra-ui/icons"
+import { NumberInput } from "@chakra-ui/number-input"
+
+const alert = () => {
+
+    return (
+        <>
+        <NavBar handleSearchInput={undefined} />
+        <Box minH={"90vh"} overflow={"hidden"} bg={useColorModeValue("#4b8bd9", "#4b8bd9")}>
+            <Stack minH={"90vh"} overflow={"hidden"} direction={{ base: "column", md: "row" }}>
+                <Flex p={10} flex={1}>
+                    <Stack spacing={8} w={"full"} maxW={"lg"}>
+                        <Heading fontSize={"3xl"}>
+                            <Text color={"white"} as={"span"}>
+                            Student?
+                            </Text>
+                        </Heading>
+                        <Text fontSize={{ base: "xl", lg: "xl" }} color={"white"}>
+                            Put your phone number and we'll send you texts highlighting events around campus!
+                        </Text>
+                    <Stack direction={{ base: "column", md: "row" }} spacing={4}>
+                    <InputGroup>
+                        <InputLeftElement
+                            pointerEvents='none'
+                            children={<PhoneIcon color='gray.300' />}
+                            />
+                        <Input type='tel' placeholder='Phone number' color={"white"} />
+                    </InputGroup>
+                        <Button rounded={"full"} bg={"#00356b"} color={"white"} _hover={{
+                            bg: "#0050a0",
+                        }}>
+                            <Text>Submit</Text>
+                        </Button>
+                    </Stack>
+                </Stack>
+                </Flex>
+
+                <Flex p={10} flex={1}>
+                    <Stack spacing={8} w={"full"} maxW={"lg"}>
+                        <Heading fontSize={"3xl"}>
+                            <Text color={"white"} as={"span"}>
+                            Club Officer?
+                            </Text>
+                        </Heading>
+                        <Text fontSize={{ base: "xl", lg: "xl" }} color={"white"}>
+                            Fill out this form to send alerts for upcoming events!
+
+                        </Text>
+                        <Stack direction={{ base: "column", md: "row" }}>
+                        <form >
+                            <FormControl isRequired>
+                                <Grid templateRows='repeat(3, 1fr)'
+                                    templateColumns='repeat(2, 1fr)'
+                                    gap={2}
+                                    >
+                                    <GridItem colSpan={1}>
+                                        <FormLabel htmlFor="club" color={"white"}>Club</FormLabel>
+                                        <Input id="club" width='auto' color="white" />
+                                        <FormErrorMessage>This field is required</FormErrorMessage>
+                                    </GridItem>
+                                    <GridItem colSpan={1}>
+                                        <FormLabel htmlFor="EventTitle" color={"white"}>Event Title</FormLabel>
+                                        <Input id="EventTitle" color="white" />
+                                        <FormErrorMessage>This field is required</FormErrorMessage>
+                                    </GridItem>
+                                    <GridItem colSpan={1}>
+                                        <FormLabel htmlFor="EventDate" color={"white"}>Event Date</FormLabel>
+                                        <Input id="EventDate" type="date" color="white" />
+                                        <FormErrorMessage>This field is required</FormErrorMessage>
+                                    </GridItem>
+                                    <GridItem colSpan={1}>
+                                        <FormLabel htmlFor="EventTime" color={"white"}>Event Time</FormLabel>
+                                        <Input id="EventTime" type="time" color="white" />
+                                        <FormErrorMessage>This field is required</FormErrorMessage>
+                                    </GridItem>
+                                    <GridItem colSpan={2}>
+                                        <FormLabel htmlFor="EventDetails" color={"white"}>Event Details</FormLabel>
+                                        <Textarea id="EventDetails" color="white" />
+                                        <FormErrorMessage>This field is required</FormErrorMessage>
+                                    </GridItem>
+                                </Grid>
+                            </FormControl>
+                            <br />
+                            <Button rounded={"full"} type="submit" bg={"#00356b"} color={"white"}>
+                                <Text>Submit</Text>
+                            </Button>   
+                        </form>
+                        
+                        </Stack>
+                    </Stack>
+                </Flex>
+            </Stack>
+        </Box>
+        </>
+    );
+}
+
+export default alert
