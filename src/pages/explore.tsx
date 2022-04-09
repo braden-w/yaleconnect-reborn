@@ -24,7 +24,14 @@ const Explore = ({clubs}: {clubs: Club[]}) => {
           minChildWidth='270px'
           spacing='2'
         >
-          {clubs.filter(club => club.name.toLowerCase().includes(searchQuery.toLowerCase()))
+          {clubs.filter(club => {
+            // Check if club.name, club.goals, club.type, club.website, club.logo contain the searchQuery
+            return (
+              club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              club.goals.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              club.type.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+          })
             .map((club) => (<ClubCardTemplate club={club} />))}
         </SimpleGrid>
         <Footer>
