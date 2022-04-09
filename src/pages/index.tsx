@@ -36,9 +36,10 @@ export default function Home() {
                 _hover={{
                   bg: '#0050a0',
                 }}
+                height={'64px'}
                 size="lg"
               >
-                Explore Clubs
+                <Text fontSize={'3xl'}>Explore Clubs</Text>
               </Button>
             </Stack>
           </Stack>
