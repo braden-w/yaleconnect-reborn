@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon, AddIcon, SearchIcon } from "@chakra-ui/icons"
 import { DarkModeSwitch } from "./DarkModeSwitch"
+import { SearchBar } from "./SearchBar"
 
 const Links = ["Dashboard", "Projects", "Team"]
 
@@ -53,7 +54,17 @@ export function NavBar() {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Heading size="md">YaleClubs</Heading>
-            <HStack
+            {/* Insert Search Bar and Input*/}
+            <IconButton
+              size={"md"}
+              icon={<SearchIcon />}
+              aria-label={"Search"}
+              display={{ md: "none" }}
+            />
+
+            <SearchBar />
+
+            {/* <HStack
               as={"nav"}
               spacing={4}
               display={{ base: "none", md: "flex" }}
@@ -61,9 +72,9 @@ export function NavBar() {
               {Links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
-            </HStack>
+            </HStack> */}
           </HStack>
-          <Flex alignItems={"center"}>
+          {/* <Flex alignItems={"center"}>
             <DarkModeSwitch />
             <Button
               variant={"solid"}
@@ -96,7 +107,7 @@ export function NavBar() {
                 <MenuItem>Link 3</MenuItem>
               </MenuList>
             </Menu>
-          </Flex>
+          </Flex> */}
         </Flex>
 
         {isOpen ? (
