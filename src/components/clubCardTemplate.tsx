@@ -31,9 +31,9 @@ export function ClubCardTemplate({club}: {club: Club}) {
           mb={3}
           pos={'relative'}>
         </Box>
-        <Flex justify={'center'} mt={-12}>
+        <Flex justify={'center'} mt={-12} mb={4}>
           {club.logo && (<Avatar
-            size={'xl'}
+            size='lg'
             src={club.logo}
             css={{
               border: '2px solid white',
@@ -60,6 +60,6 @@ export function ClubCardTemplate({club}: {club: Club}) {
 
         </Stack>
       </Box>
-    </Center>
+    </Center >
   );
 }
