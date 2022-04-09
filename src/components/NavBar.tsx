@@ -11,11 +11,9 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  Spacer,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
-  Input,
 } from "@chakra-ui/react"
 
 import {
@@ -24,6 +22,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from "@chakra-ui/icons"
+
 
 export const NavBar = () => {
   const { isOpen, onToggle } = useDisclosure()
@@ -64,7 +63,7 @@ export const NavBar = () => {
             Yale Clubs
           </Text>
 
-          <Input placeholder="Search Clubs..." variant="outline" />
+          <SearchBar />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
