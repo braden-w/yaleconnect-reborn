@@ -1,25 +1,19 @@
-import { ReactNode } from "react"
+import { ReactNode, useState } from "react"
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
-  Button,
-  Menu,
   Heading,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
+  Input,
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon, AddIcon, SearchIcon } from "@chakra-ui/icons"
-import { DarkModeSwitch } from "./DarkModeSwitch"
 import { SearchBar } from "./SearchBar"
+// import { SearchBar } from "./SearchBar"
 
 const Links = ["Dashboard", "Projects", "Team"]
 
@@ -38,7 +32,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
   </Link>
 )
 
-export function NavBar() {
+export function NavBar({ handleSearchInput }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -62,7 +56,7 @@ export function NavBar() {
               display={{ md: "none" }}
             />
 
-            <SearchBar />
+            <SearchBar handleSearchInput={handleSearchInput} />
 
             <HStack
               as={"nav"}
