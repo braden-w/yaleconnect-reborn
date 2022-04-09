@@ -17,7 +17,7 @@ const filterList = (query, list) => {
 const Explore = ({clubs}: {clubs: Club[]}) => {
   const [searchQuery, setSearchQuery] = useState("")
   const handleSearchInput = (event) => setSearchQuery(event.target.value)
-  const filteredList = filterList(searchQuery, clubs);
+  const filteredClubs = filterList(searchQuery, clubs);
 
   return (
     <>
