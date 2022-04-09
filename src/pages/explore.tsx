@@ -17,7 +17,7 @@ const filterList = (query, list) => {
 const Explore = ({clubs}: {clubs: Club[]}) => {
   const [searchQuery, setSearchQuery] = useState("")
   const setSearchInput = (event) => setSearchQuery(event.target.value)
-  const onSearchInputChanged = useMemo(() => setSearchInput, [searchQuery])
+  const onSearchInputChanged = useMemo(() => debounce(setSearchInput, 500), [searchQuery])
   const filteredClubs = filterList(searchQuery, clubs);
 
   return (
@@ -63,3 +63,17 @@ export async function getStaticProps() {
 }
 
 export default Explore
+
+// Debounce function call
+function debounce(debouncedFunction, timeInSeconds) {
+  let timeoutId;
+  return function (...args) {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      debouncedFunction.apply(this, args);
+    }, timeInSeconds * 1000);
+  };
+}
+
