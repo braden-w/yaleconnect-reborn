@@ -40,7 +40,7 @@ export function ClubCardTemplate({club}:{club:Club}){
             color={useColorModeValue('gray.700', 'white')}
             textTransform={'uppercase'}
             fontFamily={'body'}
-            fontSize={'2xl'}
+            fontSize={'2l'}
             fontWeight={800}
             letterSpacing={1.1}>
             {club.name}
