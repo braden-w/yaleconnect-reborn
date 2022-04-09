@@ -12,7 +12,6 @@ import { NavBar } from "../components/NavBar"
 import { Hero } from "../components/Hero"
 import { Container } from "../components/Container"
 import { Main } from "../components/Main"
-import { DarkModeSwitch } from "../components/DarkModeSwitch"
 import { CTA } from "../components/CTA"
 import { Footer } from "../components/Footer"
 
@@ -53,7 +52,6 @@ const Explore = () => (
         </List>
       </Main>
 
-      <DarkModeSwitch />
       <Footer>
         <Text>Next ❤️ Chakra</Text>
       </Footer>

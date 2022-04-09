@@ -18,6 +18,7 @@ import {
   Stack,
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon, AddIcon, SearchIcon } from "@chakra-ui/icons"
+import { DarkModeSwitch } from "./DarkModeSwitch"
 
 const Links = ["Dashboard", "Projects", "Team"]
 
@@ -63,6 +64,7 @@ export function NavBar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
+            <DarkModeSwitch />
             <Button
               variant={"solid"}
               colorScheme={"teal"}
