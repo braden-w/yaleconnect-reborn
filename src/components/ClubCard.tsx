@@ -57,7 +57,10 @@ export function ClubCardTemplate({club}: {club: Club}) {
           <Link href={club.website}>
             <Text color={'blue.500'}>Website</Text>
           </Link>
-
+          {/* Insert text for club.mission. It should have a button that says "Show more" after cutting the text off */}
+          <Text color={'gray.500'} noOfLines={[1, 2]}>
+            {club.mission}
+          </Text>
         </Stack>
       </Box>
     </Center >
