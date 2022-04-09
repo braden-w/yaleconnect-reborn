@@ -7,7 +7,7 @@ import { dummy } from "../components/dummy"
 import { FilterButton } from "../components/filterButton"
 import { useState } from "react"
 
-export interface Clubs {
+export interface Club {
   id: number
   name: string
   type: string
@@ -28,7 +28,7 @@ export interface Officer {
   email: string
 }
 
-const Explore = ({ data }: { data: Clubs }) => {
+const Explore = ({ data }: { data: Club[] }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const handleSearchInput = (event) => setSearchQuery(event.target.value)
 
@@ -37,6 +37,11 @@ const Explore = ({ data }: { data: Clubs }) => {
       <NavBar handleSearchInput={handleSearchInput} />
       <Container>
         {searchQuery}
+        
+
+        {/* {data.map((club) => (<ClubCardTemplate club={club} />))} */}
+        {data.map((club) => (<div>{club.address}</div>))}
+
         <FilterButton />
       </Container>
 
@@ -49,7 +54,7 @@ const Explore = ({ data }: { data: Clubs }) => {
           spacingY={5}
           maxWidth="90%"
         >
-          <ClubCardTemplate clubInfo={dummy} />
+          {/* <ClubCardTemplate clubInfo={dummy} /> */}
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
