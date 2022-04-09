@@ -16,9 +16,8 @@ export default function Home() {
     <Box bg={useColorModeValue("#4b8bd9", "#4b8bd9")}>
       <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
         <Flex p={8} flex={1} align={"center"} justify={"center"}>
-          <Stack spacing={6} w={"full"} maxW={"lg"}>
+          <Stack spacing={8} w={"full"} maxW={"lg"}>
             <Heading fontSize={"7xl"}>
-              <br />
               <Text color={"white"} as={"span"}>
                 Yale
               </Text>
@@ -47,7 +46,7 @@ export default function Home() {
             </Stack>
           </Stack>
         </Flex>
-        <Flex p={8} flex={1}>
+        <Flex p={10} flex={1}>
           <Image alt={"Login Image"} src={partyPicture} />
         </Flex>
       </Stack>
