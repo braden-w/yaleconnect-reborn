@@ -48,7 +48,8 @@ export function ClubCardTemplate({club}: {club: Club}) {
             fontFamily={'body'}
             fontSize={'2l'}
             fontWeight={800}
-            letterSpacing={1.1}>
+            letterSpacing={1.1}
+            noOfLines={[2, 3]}>
             {club.name}
           </Heading>
           <Text color={'gray.500'} noOfLines={[1, 2]} >
