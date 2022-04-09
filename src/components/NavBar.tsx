@@ -23,6 +23,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons"
 
+import { SearchBar } from "../components/SearchBar"
 
 export const NavBar = () => {
   const { isOpen, onToggle } = useDisclosure()
