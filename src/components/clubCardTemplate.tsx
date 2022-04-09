@@ -38,6 +38,15 @@ export function ClubCardTemplate({club}: {club: Club}) {
             />
           )}
         </Box>
+        <Flex justify={'center'} mt={-12}>
+          {club.logo && (<Avatar
+            size={'xl'}
+            src={club.logo}
+            css={{
+              border: '2px solid white',
+            }}
+          />)}
+        </Flex>
         <Stack>
           <Heading
             color={useColorModeValue('gray.700', 'white')}
