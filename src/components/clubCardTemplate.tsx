@@ -8,6 +8,7 @@ import {
   useColorModeValue,
   Avatar,
   Flex,
+  Link,
 } from '@chakra-ui/react';
 import {Club} from '../types/Club';
 
@@ -48,8 +49,13 @@ export function ClubCardTemplate({club}: {club: Club}) {
             {club.name}
           </Heading>
           <Text color={'gray.500'} noOfLines={2} >
-            {club.goals}
+            {club.type}
           </Text>
+          {/* External link to club.website */}
+          <Link href={club.website}>
+            <Text color={'blue.500'}>Website</Text>
+          </Link>
+
         </Stack>
       </Box>
     </Center>
