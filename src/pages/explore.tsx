@@ -7,11 +7,11 @@ import {useState} from "react"
 import {Club} from "../types/Club"
 
 
-const filterList = (query, data) => {
-  if (query === '') return data
-  return data.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())) ||
-    data.filter((club) => club.goals.toLowerCase().includes(query.toLowerCase())) ||
-    data.filter((club) => club.type.toLowerCase().includes(query.toLowerCase()))
+const filterList = (query, list) => {
+  if (query === '') return list
+  return list.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())) ||
+    list.filter((club) => club.goals.toLowerCase().includes(query.toLowerCase())) ||
+    list.filter((club) => club.type.toLowerCase().includes(query.toLowerCase()))
 
 }
 const Explore = ({clubs}: {clubs: Club[]}) => {
