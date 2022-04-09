@@ -1,4 +1,4 @@
-import { Link as ChakraLink, Text, SimpleGrid } from "@chakra-ui/react"
+import { Link as ChakraLink, Text, SimpleGrid, Box } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
 import { Container } from "../components/Container"
 import { Footer } from "../components/Footer"
@@ -18,28 +18,21 @@ const Explore = ({ clubs }: { clubs: Club[] }) => {
       <NavBar handleSearchInput={handleSearchInput} />
       <Container>
         {searchQuery}
-        
-
-        {clubs.map((club) => (<ClubCardTemplate club={club} />))}
-
         <FilterButton />
       </Container>
-
-      <Container height="100vh">
         {/* <Hero /> */}
         <SimpleGrid
-          minChildWidth="250px"
-          spacing={18}
-          spacingX={5}
-          spacingY={5}
-          maxWidth="90%"
+          minChildWidth='120px' spacing='40px'
+          // spacing={18}
+          // spacingX={5}
+          // spacingY={5}
         >
-          {/* <ClubCardTemplate clubInfo={dummy} /> */}
+          {clubs.map((club) => (<ClubCardTemplate club={club} />))}
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
         </Footer>
-      </Container>
+      
     </>
   )
 }
