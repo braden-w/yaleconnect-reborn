@@ -1,25 +1,10 @@
-import {
-  Link as ChakraLink,
-  Text,
-  Code,
-  List,
-  ListIcon,
-  ListItem,
-  Input,
-  SimpleGrid,
-} from "@chakra-ui/react"
-import { CheckCircleIcon, LinkIcon } from "@chakra-ui/icons"
+import { Link as ChakraLink, Text, SimpleGrid } from "@chakra-ui/react"
 import { NavBar } from "../components/NavBar"
-import { Hero } from "../components/Hero"
 import { Container } from "../components/Container"
-import { Main } from "../components/Main"
-import { CTA } from "../components/CTA"
 import { Footer } from "../components/Footer"
-import { useEffect, useState } from "react"
 import { ClubCardTemplate } from "../components/clubCardTemplate"
 import { dummy } from "../components/dummy"
 import { FilterButton } from "../components/filterButton"
-
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
