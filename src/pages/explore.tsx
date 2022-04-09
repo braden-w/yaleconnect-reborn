@@ -12,15 +12,17 @@ import {Club} from "../types/Club"
 const Explore = ({clubs}: {clubs: Club[]}) => {
   const [searchQuery, setSearchQuery] = useState("")
   const handleSearchInput = (event) => setSearchQuery(event.target.value)
-  const filteredClubs =
-    clubs.filter(club => {
-      // Check if club.name, club.goals, club.type, club.website, club.logo contain the searchQuery
-      return (
-        club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (club.goals && club.goals.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (club.type && club.type.toLowerCase().includes(searchQuery.toLowerCase()))
-      )
-    })
+  if (searchQuery !== "") {
+    const filteredClubs =
+      clubs.filter(club => {
+        // Check if club.name, club.goals, club.type, club.website, club.logo contain the searchQuery
+        return (
+          club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          (club.goals && club.goals.toLowerCase().includes(searchQuery.toLowerCase())) ||
+          (club.type && club.type.toLowerCase().includes(searchQuery.toLowerCase()))
+        )
+      })
+  }
 
   return (
     <>
