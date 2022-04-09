@@ -1,56 +1,52 @@
 import {
-  Link as ChakraLink,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Stack,
   Text,
-  Code,
-  List,
-  ListIcon,
-  ListItem,
-} from '@chakra-ui/react'
-import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
+  useColorModeValue,
+} from '@chakra-ui/react';
+import Image from 'next/image';
+import partyPicture from '../assets/undraw_partying_re_at7f.svg';
 
-import { Hero } from '../components/Hero'
-import { Container } from '../components/Container'
-import { Main } from '../components/Main'
-import { DarkModeSwitch } from '../components/DarkModeSwitch'
-import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
-
-const Index = () => (
-  <Container height="100vh">
-    <Hero />
-    <Main>
-      <Text>
-        Example repository of <Code>Next.js</Code> + <Code>chakra-ui</Code> +{' '}
-        <Code>TypeScript</Code>.
-      </Text>
-
-      <List spacing={3} my={0}>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink
-            isExternal
-            href="https://chakra-ui.com"
-            flexGrow={1}
-            mr={2}
-          >
-            Chakra UI <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-        <ListItem>
-          <ListIcon as={CheckCircleIcon} color="green.500" />
-          <ChakraLink isExternal href="https://nextjs.org" flexGrow={1} mr={2}>
-            Next.js <LinkIcon />
-          </ChakraLink>
-        </ListItem>
-      </List>
-    </Main>
-
-    <DarkModeSwitch />
-    <Footer>
-      <Text>Next ❤️ Chakra</Text>
-    </Footer>
-    <CTA />
-  </Container>
-)
-
-export default Index
+export default function Home() {
+  return (
+    <Box bg={useColorModeValue('#4b8bd9', '#4b8bd9')}>
+      <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+        <Flex p={8} flex={1} align={'center'} justify={'center'}>
+          <Stack spacing={6} w={'full'} maxW={'lg'}>
+            <Heading fontSize={'7xl'}>
+              <br />
+              <Text color={'white'} as={'span'}>
+                Yale
+              </Text>
+              <Text color={'#00356b'} as={'span'}>
+                Clubs
+              </Text>
+            </Heading>
+            <Text fontSize={{ base: '3xl', lg: '3xl' }} color={'white'}>
+              Easily find the clubs you want to join.
+            </Text>
+            <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
+              <Button
+                rounded={'full'}
+                bg={'#00356b'}
+                color={'white'}
+                _hover={{
+                  bg: '#0050a0',
+                }}
+                size="lg"
+              >
+                Explore Clubs
+              </Button>
+            </Stack>
+          </Stack>
+        </Flex>
+        <Flex flex={1}>
+          <Image alt={'Login Image'} objectFit={'cover'} src={partyPicture} />
+        </Flex>
+      </Stack>
+    </Box>
+  );
+}
