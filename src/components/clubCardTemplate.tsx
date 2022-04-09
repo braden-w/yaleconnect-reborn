@@ -17,10 +17,11 @@ export function ClubCardTemplate({club}:{club:Club}){
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'md'}
         rounded={'lg'}
+        width={'270px'}
         p={6}
         overflow={'hidden'}>
         <Box
-          h={'130px'}
+          height={'130px'}
           bg={'gray.100'}
           mt={-6}
           mx={-6}
