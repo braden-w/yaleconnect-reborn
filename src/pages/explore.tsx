@@ -40,7 +40,7 @@ const Explore = ({ data }: { data: Club[] }) => {
         
 
         {/* {data.map((club) => (<ClubCardTemplate club={club} />))} */}
-        {data.map((club) => (<div>{club.address}</div>))}
+        {data.map((club) => (<div>{club.name}</div>))}
 
         <FilterButton />
       </Container>
