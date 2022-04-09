@@ -6,11 +6,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.0.5",
+    "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.4.2",
     "@chakra-ui/theme-tools": "1.1.2",
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
+    "@material-ui/icons": "^4.11.3",
     "framer-motion": "^4.0.3",
     "next": "latest",
     "react": "^17.0.2",
