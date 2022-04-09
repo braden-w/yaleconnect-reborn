@@ -16,12 +16,12 @@ const filterList = (query, list) => {
 }
 const Explore = ({clubs}: {clubs: Club[]}) => {
   const [searchQuery, setSearchQuery] = useState("")
-  const handleSearchInput = (event) => setSearchQuery(event.target.value)
+  const onSearchInputChanged = (event) => setSearchQuery(event.target.value)
   const filteredClubs = filterList(searchQuery, clubs);
 
   return (
     <>
-      <NavBar handleSearchInput={handleSearchInput} />
+      <NavBar onSearchInputChanged={onSearchInputChanged} />
       <Container>
       </Container>
       {/* <Hero /> */}
