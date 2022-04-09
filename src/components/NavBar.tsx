@@ -49,10 +49,12 @@ export const NavBar = () => {
               Yale Clubs
             </Heading>
           </Box>
-          <Box p="2">
+          <Box>
             <SearchBar />
           </Box>
-          <DesktopNav />
+          <Box>
+            <DesktopNav />
+          </Box>
         </Flex>
       </Flex>
 
