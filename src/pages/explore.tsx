@@ -5,6 +5,7 @@ import { Footer } from "../components/Footer"
 import { ClubCardTemplate } from "../components/clubCardTemplate"
 import { dummy } from "../components/dummy"
 import { FilterButton } from "../components/filterButton"
+import { useState } from "react"
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
