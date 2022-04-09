@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon, AddIcon, SearchIcon } from "@chakra-ui/icons"
 import { SearchBar } from "./SearchBar"
+import {FilterButton} from "./filterButton"
 // import { SearchBar } from "./SearchBar"
 
 const Links = ["Dashboard", "Projects", "Team"]
@@ -68,6 +69,7 @@ export function NavBar({ handleSearchInput }) {
               ))}
             </HStack>
           </HStack>
+                  <FilterButton />
           {/* <Flex alignItems={"center"}>
             <DarkModeSwitch />
             <Button
