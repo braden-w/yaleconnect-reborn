@@ -5,7 +5,6 @@ import {
   Heading,
   Text,
   Stack,
-  Avatar,
   useColorModeValue,
 } from '@chakra-ui/react';
 import {Club} from '../types/Club';
@@ -17,7 +16,8 @@ export function ClubCardTemplate({club}:{club:Club}){
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'md'}
         rounded={'lg'}
-        width={'270px'}
+        width={'360px'}
+        height={'360px'}
         p={6}
         overflow={'hidden'}>
         <Box
