@@ -28,8 +28,8 @@ const Explore = ({clubs}: {clubs: Club[]}) => {
             // Check if club.name, club.goals, club.type, club.website, club.logo contain the searchQuery
             return (
               club.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              club.goals.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              club.type.toLowerCase().includes(searchQuery.toLowerCase())
+              (club.goals && club.goals.toLowerCase().includes(searchQuery.toLowerCase())) ||
+              (club.type && club.type.toLowerCase().includes(searchQuery.toLowerCase()))
             )
           })
             .map((club) => (<ClubCardTemplate club={club} />))}
