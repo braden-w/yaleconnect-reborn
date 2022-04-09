@@ -33,7 +33,7 @@ const Explore = ({clubs}: {clubs: Club[]}) => {
       {/* <Hero /> */}
       <Box p='5'>
         <SimpleGrid
-          minChildWidth='270px'
+          minChildWidth='280px'
           spacing='2'
         >
           {filteredClubs.map((club) => (<ClubCardTemplate club={club} />))}
