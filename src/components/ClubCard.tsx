@@ -54,6 +54,13 @@ export function ClubCardTemplate({club}: {club: Club}) {
           <Text color={'gray.500'} noOfLines={[1, 2]} >
             {club.type}
           </Text>
+          {/* Insert a horizontal divider */}
+          <Box
+            borderBottom={'1px solid'}
+            borderColor={'gray.200'}
+            mt={4}
+            mb={4}
+          />
           {/* External link to club.website */}
           <Link href={club.website}>
             <Text color={'blue.500'}>Website</Text>
