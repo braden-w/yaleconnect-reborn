@@ -6,19 +6,20 @@ import {
   Text,
   Stack,
   useColorModeValue,
+  Avatar,
+  Flex,
 } from '@chakra-ui/react';
 import {Club} from '../types/Club';
 
-export function ClubCardTemplate({club}:{club:Club}){
+export function ClubCardTemplate({club}: {club: Club}) {
   return (
     <Center py={6}>
       <Box
         bg={useColorModeValue('white', 'gray.900')}
-        boxShadow={'md'}
-        rounded={'lg'}
-        width={'360px'}
+        boxShadow={'xl'}
+        rounded={'md'}
         height={'360px'}
-        p={6}
+        width={'360px'}
         overflow={'hidden'}>
         <Box
           height={'130px'}
