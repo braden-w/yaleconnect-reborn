@@ -15,6 +15,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react"
+
 import {
   HamburgerIcon,
   CloseIcon,
@@ -22,7 +23,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons"
 
-const NavBar = () => {
+export const NavBar = () => {
   const { isOpen, onToggle } = useDisclosure()
 
   return (
@@ -305,4 +306,3 @@ const NAV_ITEMS: Array<NavItem> = [
   },
 ]
 
-export default NavBar
