@@ -28,7 +28,7 @@ export interface Officer {
   email: string
 }
 
-const Explore = ({ data }: { data: Club[] }) => {
+const Explore = ({ clubs }: { clubs: Club[] }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const handleSearchInput = (event) => setSearchQuery(event.target.value)
 
@@ -39,8 +39,7 @@ const Explore = ({ data }: { data: Club[] }) => {
         {searchQuery}
         
 
-        {/* {data.map((club) => (<ClubCardTemplate club={club} />))} */}
-        {data.map((club) => (<div>{club.name}</div>))}
+        {clubs.map((club) => (<ClubCardTemplate club={club} />))}
 
         <FilterButton />
       </Container>
@@ -66,7 +65,7 @@ const Explore = ({ data }: { data: Club[] }) => {
 
 // This gets called on every request
 export async function getStaticProps() {
-  // Fetch data from external API
+  // Fetch clubs from external API
   const res = await fetch("https://yaleorgs.com/api/organizations", {
     method: "POST",
     headers: {
@@ -74,10 +73,10 @@ export async function getStaticProps() {
         "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDk1MTk4MzAsInN1YiI6ImJtdzUyIn0.5EDjGl1x-fum37VsQzjcWphGODQU-Mg1CtPGJddQ9Yk",
     },
   })
-  const data = await res.json()
+  const clubs = await res.json()
 
-  // Pass data to the page via props
-  return { props: { data } }
+  // Pass clubs to the page via props
+  return { props: { clubs } }
 }
 
 export default Explore
