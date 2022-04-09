@@ -61,7 +61,20 @@ export const NavBar = () => {
           >
             Yale Clubs
           </Text>
-
+          <Box
+            flexGrow={1}
+            display={"flex"}
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
+            <Text
+              fontSize={{ base: "lg", md: "xl" }}
+              fontWeight={"bold"}
+              color={useColorModeValue("gray.600", "white")}
+            >
+              Next.js + Chakra UI
+            </Text>
+          </Box>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
