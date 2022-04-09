@@ -59,7 +59,7 @@ export const NavBar = () => {
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
           >
-            Logo
+            Yale Clubs
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
