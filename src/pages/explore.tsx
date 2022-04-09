@@ -1,15 +1,15 @@
-import { Link as ChakraLink, Text, SimpleGrid, Box } from "@chakra-ui/react"
-import { NavBar } from "../components/NavBar"
-import { Container } from "../components/Container"
-import { Footer } from "../components/Footer"
-import { ClubCardTemplate } from "../components/clubCardTemplate"
-import { dummy } from "../components/dummy"
-import { FilterButton } from "../components/filterButton"
-import { useState } from "react"
+import {Link as ChakraLink, Text, SimpleGrid, Box} from "@chakra-ui/react"
+import {NavBar} from "../components/NavBar"
+import {Container} from "../components/Container"
+import {Footer} from "../components/Footer"
+import {ClubCardTemplate} from "../components/clubCardTemplate"
+import {dummy} from "../components/dummy"
+import {FilterButton} from "../components/filterButton"
+import {useState} from "react"
 import {Club} from "../types/Club"
 
 
-const Explore = ({ clubs }: { clubs: Club[] }) => {
+const Explore = ({clubs}: {clubs: Club[]}) => {
   const [searchQuery, setSearchQuery] = useState("")
   const handleSearchInput = (event) => setSearchQuery(event.target.value)
 
@@ -17,28 +17,27 @@ const Explore = ({ clubs }: { clubs: Club[] }) => {
     <>
       <NavBar handleSearchInput={handleSearchInput} />
       <Container>
-        <FilterButton />
       </Container>
-        {/* <Hero /> */}
-        <Box p='5'>
-          <SimpleGrid
-            minChildWidth='320px'
-            spacing='2'
-          >
+      {/* <Hero /> */}
+      <Box p='5'>
+        <SimpleGrid
+          minChildWidth='270px'
+          spacing='2'
+        >
           {clubs.filter(club => club.name.toLowerCase().includes(searchQuery.toLowerCase()))
             .map((club) => (<ClubCardTemplate club={club} />))}
-          </SimpleGrid>
-          <Footer>
-            <Text>Built with ❤ and ☕</Text>
-          </Footer>
-        </Box>
-      
+        </SimpleGrid>
+        <Footer>
+          <Text>Built with ❤ and ☕</Text>
+        </Footer>
+      </Box>
+
     </>
   )
 }
 
 // This gets called on every request
-export async function getStaticProps() {
+export async function getStaticPaths() {
   // Fetch clubs from external API
   const res = await fetch("https://yaleorgs.com/api/organizations", {
     method: "POST",
@@ -50,7 +49,7 @@ export async function getStaticProps() {
   const clubs = await res.json()
 
   // Pass clubs to the page via props
-  return { props: { clubs } }
+  return {props: {clubs}}
 }
 
 export default Explore
