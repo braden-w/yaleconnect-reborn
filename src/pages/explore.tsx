@@ -37,7 +37,7 @@ const Explore = ({clubs}: {clubs: Club[]}) => {
 }
 
 // This gets called on every request
-export async function getStaticPaths() {
+export async function getStaticProps() {
   // Fetch clubs from external API
   const res = await fetch("https://yaleorgs.com/api/organizations", {
     method: "POST",
