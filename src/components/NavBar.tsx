@@ -242,11 +242,12 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: "Learn Design",
+    label: "Home",
     href: "#",
   },
   {
-    label: "Hire Designers",
+    label: "Explore",
     href: "#",
   },
+  
 ]
