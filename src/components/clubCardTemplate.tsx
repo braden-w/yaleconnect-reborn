@@ -32,13 +32,13 @@ export function ClubCardTemplate({club}: {club: Club}) {
           pos={'relative'}>
         </Box>
         <Flex justify={'center'} mt={-12} mb={4}>
-          {club.logo && (<Avatar
+          <Avatar
             size='lg'
             src={club.logo}
             css={{
               border: '2px solid white',
             }}
-          />)}
+          />
         </Flex>
         <Stack>
           <Heading
