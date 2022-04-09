@@ -18,6 +18,7 @@ import { CTA } from "../components/CTA"
 import { Footer } from "../components/Footer"
 import { useState } from "react"
 import { ClubCardTemplate } from "../components/clubCardTemplate"
+import { dummy } from "../components/dummy"
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const handleSearchInput = (event) => setSearchQuery(event.target.value)
@@ -34,13 +35,10 @@ const Explore = () => {
           spacingY={5}
           maxWidth="90%"
         >
-          <ClubCardTemplate />
-          <ClubCardTemplate />
-          <ClubCardTemplate />
-          <ClubCardTemplate />
-          <ClubCardTemplate />
-          <ClubCardTemplate />
-          <ClubCardTemplate />
+          <ClubCardTemplate clubInfo={dummy} />
+          <ClubCardTemplate clubInfo={dummy} />
+          <ClubCardTemplate clubInfo={dummy} />
+          <ClubCardTemplate clubInfo={dummy} />
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
