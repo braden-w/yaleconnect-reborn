@@ -24,19 +24,12 @@ export function ClubCardTemplate({club}: {club: Club}) {
         width={'360px'}
         overflow={'hidden'}>
         <Box
-          height={'130px'}
+          height={'100px'}
           bg={'gray.100'}
           mt={-6}
           mx={-6}
           mb={3}
           pos={'relative'}>
-          {/* Render an image only if club.logo is not null */}
-          {club.logo && (
-            <Image
-              src={club.logo}
-              layout={'fill'}
-            />
-          )}
         </Box>
         <Flex justify={'center'} mt={-12}>
           {club.logo && (<Avatar
