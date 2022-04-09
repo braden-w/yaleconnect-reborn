@@ -18,12 +18,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react"
 
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon,
-} from "@chakra-ui/icons"
+import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons"
 
 import { SearchBar } from "../components/SearchBar"
 
