@@ -2,8 +2,7 @@ import {Text, SimpleGrid, Box} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
-import {MemoizedClubCardTemplate} from "../components/ClubCard"
-import {useMemo, useState} from "react"
+import {lazy, Suspense, useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
 
@@ -23,6 +22,10 @@ const fetcher = url => fetch(url, {
   },
 }).then(r => r.json())
 
+
+const LazyCardGrid = lazy(() => import('../components/CardGrid'));
+
+
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const setSearchInput = (event) => setSearchQuery(event.target.value)
@@ -38,12 +41,9 @@ const Explore = () => {
       </Container>
       {/* <Hero /> */}
       <Box p='5'>
-        <SimpleGrid
-          minChildWidth='280px'
-          spacing='2'
-        >
-          {filteredClubs && filteredClubs.map((club) => (<MemoizedClubCardTemplate club={club} />))}
-        </SimpleGrid>
+        <Suspense fallback={'Loading...'}>
+          <LazyCardGrid filteredClubs={filteredClubs}></LazyCardGrid>
+        </Suspense>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
         </Footer>
