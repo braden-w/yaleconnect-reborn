@@ -3,7 +3,7 @@ import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
 import {ClubCardTemplate} from "../components/ClubCard"
-import {useEffect, useMemo, useState} from "react"
+import {useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
 
@@ -30,7 +30,6 @@ const Explore = () => {
   const onSearchInputChanged = useMemo(() => debounce(setSearchInput, 500), [searchQuery])
 
   const {data: clubs} = useSWR("https://yaleorgs.com/api/organizations", fetcher);
-
   const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
 
   return (
@@ -54,28 +53,6 @@ const Explore = () => {
     </>
   )
 }
-
-/*
-// This gets called on every request
-export async function getStaticProps() {
-  // Fetch clubs from external API
-  const res = await fetch("https://yaleorgs.com/api/organizations", {
-    method: "POST",
-    headers: {
-      Authorization:
-        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDk1MTk4MzAsInN1YiI6ImJtdzUyIn0.5EDjGl1x-fum37VsQzjcWphGODQU-Mg1CtPGJddQ9Yk",
-    },
-  })
-  const clubs = await res.json()
-
-  // Pass clubs to the page via props
-  return {
-    props: {clubs},
-    // Revalidates the page every 10 seconds
-    revalidate: 10,
-  }
-}
-*/
 
 export default Explore
 
