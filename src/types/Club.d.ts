@@ -13,6 +13,7 @@ export interface Club {
   mission: null | string;
   constitution: null | string;
   officers: Officer[];
+  categoryParsed: null | string;
 }
 
 export interface Officer {
