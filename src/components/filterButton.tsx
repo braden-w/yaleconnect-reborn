@@ -18,17 +18,19 @@ import {
 import { useState } from 'react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 
-export const FilterButton = () => {
+export const FilterButton = ({filters}) => {
     // state logic for checkbox group
     const [checked, setChecked] = useState(false); 
-    const [value, setValue] = useState('');
-    var checkedItems = [];
+    const [filterArr, setFilterArr] = useState([]);
     const handleChange = (e) => {
         if (e.target.checked) {
-            checkedItems.push(e.target.value);
+            setFilterArr([...filterArr, e.target.value]);
+            filters(filterArr);
         }
+
         else {
-            checkedItems = checkedItems.filter(item => item !== e.target.value);
+            setFilterArr(filterArr.filter(item => item !== e.target.value));
+            filters(filterArr);
         }
     };
     const titles = ["Jobs & Education", "People & Society", "Health", "Arts & Entertainment", "Sports", "Law & Government", "Business & Industrial", "Science", "News", "Finance"]
@@ -46,7 +48,7 @@ export const FilterButton = () => {
                             key={index}
                             value={title}
                             onChange={handleChange}
-                            isChecked={checked}
+                            checked={checked}
                         >
                             {title}
                         </Checkbox>
@@ -56,6 +58,6 @@ export const FilterButton = () => {
                 </CheckboxGroup>
             </MenuList>
             </Menu>
-            )   
+        )   
 }
 
