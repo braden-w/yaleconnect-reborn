@@ -2,17 +2,28 @@ import {Text, SimpleGrid, Box} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
-import {useMemo, useState} from "react"
+import {Children, useEffect, useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
-import CardGrid from "../components/CardGrid"
+import {MemoizedClubCardTemplate} from "../components/ClubCard"
+
 
 
 // Filter list of clubs based on search query
-const filterList = (query, list) => {
+const filterListMatchingQuery = (query, list) => {
   // return list where website is not null
   if (query === '') return list
   return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()) || club.mission.toLowerCase().includes(query.toLowerCase()))
+}
+
+// Returns all elements of an array that have a category that is in listOfCategoriesParsed
+const filterListMatchingCategories = (listOfCategoriesParsed, list) => {
+  // return list where website is not null
+  if (listOfCategoriesParsed.length === 0) return list;
+  const returnList = list.filter(club => listOfCategoriesParsed.some(category => club.categories && club.categories.some(clubCategory => clubCategory && clubCategory.category.includes(category))))
+  // const returnList = list.filter(club => club.categories && club.categories.some(({category}) => listOfCategoriesParsed.some(categoryProp => categoryProp.includes(category))))
+  console.log("🚀 ~ file: explore.tsx ~ line 26 ~ filterListMatchingCategories ~ returnList", returnList)
+  return returnList
 }
 
 const fetcher = url => fetch(url, {
@@ -23,26 +34,60 @@ const fetcher = url => fetch(url, {
   },
 }).then(r => r.json())
 
+const Defer = ({chunkSize, children}) => {
+  const [renderedItemsCount, setRenderedItemsCount] = useState(chunkSize);
 
+  const childrenArray = useMemo(() => Children.toArray(children), [
+    children
+  ]);
+
+  useEffect(() => {
+    if (renderedItemsCount < childrenArray.length) {
+      window.requestIdleCallback(
+        () => {
+          setRenderedItemsCount(
+            Math.min(renderedItemsCount + chunkSize, childrenArray.length)
+          );
+        },
+        {timeout: 200}
+      );
+    }
+  }, [renderedItemsCount, childrenArray.length, chunkSize]);
+
+  return <>{childrenArray.slice(0, renderedItemsCount)}</>;
+};
 
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
-  const setSearchInput = (event) => setSearchQuery(event.target.value)
-  const onSearchInputChanged = setSearchInput
-
-  const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
-  const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
+  const [searchCategories, setSearchCategories] = useState([])
+  const onSearchInputChanged = (event) => setSearchQuery(event.target.value)
+  const onSearchCategoriesChanged = (event) => {
+    if (event.target.checked) {
+      // Add category to searchCategories
+      setSearchCategories([...searchCategories, event.target.value])
+    }
+    else {
+      // Remove category from searchCategories
+      setSearchCategories(searchCategories.filter(category => category !== event.target.value))
+    }
+  }
+  // const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
+  var clubs2 = require('../assets/cloud_classifier/club_data_new.json')
+  // const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
+  const filteredClubs2 = useMemo(() => filterListMatchingCategories(searchCategories, filterListMatchingQuery(searchQuery, clubs2)), [searchCategories, searchQuery, clubs2])
 
   return (
     <>
-      <NavBar onSearchInputChanged={onSearchInputChanged} />
+      <NavBar onSearchInputChanged={onSearchInputChanged} onSearchCategoriesChanged={onSearchCategoriesChanged} />
       <Container>
       </Container>
       {/* <Hero /> */}
       <Box p='5'>
         <SimpleGrid minChildWidth='280px' spacing='2'>
-          <CardGrid filteredClubs={filteredClubs}></CardGrid>
+          <Defer chunkSize={30}>
+            {filteredClubs2 && filteredClubs2.map(club => <MemoizedClubCardTemplate key={club.id} club={club} />)}
+          </Defer>
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
