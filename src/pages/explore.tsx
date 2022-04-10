@@ -6,19 +6,28 @@ import {Children, useEffect, useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
 import {MemoizedClubCardTemplate} from "../components/ClubCard"
-import { FilterButton } from "../components/filterButton"
-import { Filter, FilterSharp } from "@material-ui/icons"
+import {FilterButton} from "../components/filterButton"
+import {Filter, FilterSharp} from "@material-ui/icons"
 
 
 
 // Filter list of clubs based on search query
-const filterList = (query, filters, list) => {
+const filterListMatchingQuery = (query, list) => {
   // return list where website is not null
   if (query === '') return list
-  console.log(filters);
-  return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()) 
-                    || club.mission.toLowerCase().includes(query.toLowerCase())
-                    )
+  return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase())
+    || club.mission.toLowerCase().includes(query.toLowerCase())
+  )
+}
+
+// Returns all elements of an array that have a category that is in listOfCategoriesParsed
+const filterListMatchingCategories = (listOfCategoriesParsed, list) => {
+  // return list where website is not null
+  if (listOfCategoriesParsed.length === 0) return list;
+  const returnList = list.filter(club => listOfCategoriesParsed.some(category => club.categories && club.categories.some(clubCategory => clubCategory && clubCategory.category.includes(category))))
+  // const returnList = list.filter(club => club.categories && club.categories.some(({category}) => listOfCategoriesParsed.some(categoryProp => categoryProp.includes(category))))
+  console.log("🚀 ~ file: explore.tsx ~ line 26 ~ filterListMatchingCategories ~ returnList", returnList)
+  return returnList
 }
 
 const fetcher = url => fetch(url, {
@@ -55,28 +64,28 @@ const Defer = ({chunkSize, children}) => {
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
-  const [filters, setFilters] = useState([])
-  const setSearchInput = (event) => setSearchQuery(event.target.value)
-  const onSearchInputChanged = setSearchInput
+  const [searchCategories, setSearchCategories] = useState([])
+  const onSearchInputChanged = (event) => setSearchQuery(event.target.value)
+  const onSearchCategoriesChanged = (event) => {
+    if (event.target.checked) {
+      // Add category to searchCategories
+      setSearchCategories([...searchCategories, event.target.value])
+    }
+    else {
+      // Remove category from searchCategories
+      setSearchCategories(searchCategories.filter(category => category !== event.target.value))
+    }
+  }
   // const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
   var clubs2 = require('../assets/cloud_classifier/club_data_newer.json')
   // const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
-  const filteredClubs2 = useMemo(() => filterList(searchQuery, filters, clubs2), [searchQuery, filters, clubs2])
-
-  const sendFilters = (finalfilters) => {
-    setFilters(finalfilters);
-  }
-
-  useEffect(() => {
-    sendFilters;
-  }, [filters])
+  const filteredClubs2 = useMemo(() => filterListMatchingCategories(searchCategories, filterListMatchingQuery(searchQuery, clubs2)), [searchCategories, searchQuery, clubs2])
 
   return (
     <>
-      <NavBar onSearchInputChanged={onSearchInputChanged} />
-        <Flex justify={"right"} paddingRight={4}>
-          <FilterButton filters={sendFilters} />
-        </Flex>
+      <NavBar onSearchInputChanged={onSearchInputChanged} onSearchCategoriesChanged={onSearchCategoriesChanged} />
+      <Container>
+      </Container>
       {/* <Hero /> */}
       <Box p='5'>
         <SimpleGrid minChildWidth='280px' spacing='2'>
