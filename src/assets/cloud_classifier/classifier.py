@@ -7,20 +7,18 @@ def classify_text(text):
     
     return client.classify_text(document=document)
 
-    # response = client.classify_text(document=document)
-
-    # for category in response.categories:
-    #     print("=" * 80)
-    #     print(f"category  : {category.name}")
-    #     print(f"confidence: {category.confidence:.0%}")
-
 def main():
     with open('club_data.json', 'r') as read_file:
         clubs = json.load(read_file)
         # clubs = clubs[0:5]
 
         for i, club in enumerate(clubs):
-            club_string = club['name'] + ' ' + club['mission']
+            club_string = club['name']
+            if club['category'] is None:
+                club_string += (' ' + club['mission'])
+            else:
+                club_string += (' ' + club['category'] + ' ' + club['mission'])
+
             while len(club_string.split()) < 25:
                 club_string += (" " + club_string)
 
