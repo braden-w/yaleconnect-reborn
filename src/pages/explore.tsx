@@ -2,7 +2,7 @@ import {Text, SimpleGrid, Box} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
-import {useMemo, useState} from "react"
+import {Children, useEffect, useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
 import {MemoizedClubCardTemplate} from "../components/ClubCard"
@@ -23,8 +23,36 @@ const fetcher = url => fetch(url, {
   },
 }).then(r => r.json())
 
+const Defer = ({chunkSize, children}) => {
+  const [renderedItemsCount, setRenderedItemsCount] = useState(chunkSize);
 
+  const childrenArray = useMemo(() => Children.toArray(children), [
+    children
+  ]);
 
+  useEffect(() => {
+    if (renderedItemsCount < childrenArray.length) {
+      window.requestIdleCallback(
+        () => {
+          setRenderedItemsCount(
+            Math.min(renderedItemsCount + chunkSize, childrenArray.length)
+          );
+        },
+        {timeout: 200}
+      );
+    }
+  }, [renderedItemsCount, childrenArray.length, chunkSize]);
+
+  return <>{childrenArray.slice(0, renderedItemsCount)}</>;
+};
+
+const Cards = ({filteredClubs}) => {
+  return (
+    <Defer chunkSize={10}>
+      {filteredClubs && filteredClubs.map(club => <MemoizedClubCardTemplate key={club.id} club={club} />)}
+    </Defer>
+  );
+};
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
@@ -42,7 +70,7 @@ const Explore = () => {
       {/* <Hero /> */}
       <Box p='5'>
         <SimpleGrid minChildWidth='280px' spacing='2'>
-          {filteredClubs && filteredClubs.map(club => <MemoizedClubCardTemplate club={club} />)}
+          <Cards filteredClubs={filteredClubs} />
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
