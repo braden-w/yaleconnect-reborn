@@ -4,6 +4,7 @@ import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
 import {ClubCardTemplate} from "../components/ClubCard"
 import {useEffect, useMemo, useState} from "react"
+import useSWR from 'swr'
 import {Club} from "../types/Club"
 
 
@@ -14,30 +15,23 @@ const filterList = (query, list) => {
     list.filter((club) => club.type.toLowerCase().includes(query.toLowerCase()))
 
 }
-const Explore = ({clubs}: {clubs: Club[]}) => {
+
+const fetcher = url => fetch(url, {
+  method: "POST",
+  headers: {
+    Authorization:
+      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDk1MTk4MzAsInN1YiI6ImJtdzUyIn0.5EDjGl1x-fum37VsQzjcWphGODQU-Mg1CtPGJddQ9Yk",
+  },
+}).then(r => r.json())
+
+const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const setSearchInput = (event) => setSearchQuery(event.target.value)
   const onSearchInputChanged = useMemo(() => debounce(setSearchInput, 500), [searchQuery])
-  const filteredClubs = filterList(searchQuery, clubs);
 
-  const [clubs, setClubs] = useState([]);
-  useEffect(() => {
-    async function fetchAPI(): Promise<Club[]> {
-      // Fetch clubs from external API
-      const res = await fetch("https://yaleorgs.com/api/organizations", {
-        method: "POST",
-        headers: {
-          Authorization:
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDk1MTk4MzAsInN1YiI6ImJtdzUyIn0.5EDjGl1x-fum37VsQzjcWphGODQU-Mg1CtPGJddQ9Yk",
-        },
-      })
-      const clubList = await res.json()
+  const {data: clubs} = useSWR("https://yaleorgs.com/api/organizations", fetcher);
 
-      // Pass clubs to the page via props
-      return clubList
-    }
-    fetchAPI().then((clubs) => setClubs(clubs))
-  })
+  const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
 
   return (
     <>
@@ -50,7 +44,7 @@ const Explore = ({clubs}: {clubs: Club[]}) => {
           minChildWidth='280px'
           spacing='2'
         >
-          {filteredClubs.map((club) => (<ClubCardTemplate club={club} />))}
+          {filteredClubs && filteredClubs.map((club) => (<ClubCardTemplate club={club} />))}
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
