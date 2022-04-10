@@ -25,8 +25,6 @@ const filterListMatchingCategories = (listOfCategoriesParsed, list) => {
   // return list where website is not null
   if (listOfCategoriesParsed.length === 0) return list;
   const returnList = list.filter(club => listOfCategoriesParsed.some(category => club.categories && club.categories.some(clubCategory => clubCategory && clubCategory.category.includes(category))))
-  // const returnList = list.filter(club => club.categories && club.categories.some(({category}) => listOfCategoriesParsed.some(categoryProp => categoryProp.includes(category))))
-  console.log("🚀 ~ file: explore.tsx ~ line 26 ~ filterListMatchingCategories ~ returnList", returnList)
   return returnList
 }
 
