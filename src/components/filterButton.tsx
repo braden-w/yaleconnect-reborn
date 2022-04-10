@@ -18,19 +18,9 @@ import {
 import {useState} from 'react'
 import {HamburgerIcon} from '@chakra-ui/icons'
 
-export const FilterButton = () => {
+export const FilterButton = ({onSearchCategoriesChanged}) => {
     // state logic for checkbox group
     const [checked, setChecked] = useState(false);
-    const [value, setValue] = useState('');
-    var checkedItems = [];
-    const handleChange = (e) => {
-        if (e.target.checked) {
-            checkedItems.push(e.target.value);
-        }
-        else {
-            checkedItems = checkedItems.filter(item => item !== e.target.value);
-        }
-    };
     const titles = ["Jobs & Education", "People & Society", "Health", "Arts & Entertainment", "Sports", "Law & Government", "Business & Industrial", "Science", "News", "Finance"]
     return (
         <Menu>
@@ -45,7 +35,7 @@ export const FilterButton = () => {
                                 <Checkbox
                                     key={index}
                                     value={title}
-                                    onChange={handleChange}
+                                    onChange={onSearchCategoriesChanged}
                                     isChecked={checked}
                                 >
                                     {title}

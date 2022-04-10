@@ -33,7 +33,7 @@ const NavLink = ({children}: {children: ReactNode}) => (
   </Link>
 )
 
-export function NavBar({onSearchInputChanged}) {
+export function NavBar({onSearchInputChanged, onSearchCategoriesChanged}) {
   const {isOpen, onOpen, onClose} = useDisclosure()
 
   return (
@@ -71,7 +71,7 @@ export function NavBar({onSearchInputChanged}) {
               ))}
             </HStack>
           </HStack>
-          <FilterButton />
+          <FilterButton onSearchCategoriesChanged={onSearchCategoriesChanged} />
           {/* <Flex alignItems={"center"}>
             <DarkModeSwitch />
             <Button
