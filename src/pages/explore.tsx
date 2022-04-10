@@ -29,7 +29,7 @@ const Explore = () => {
   const setSearchInput = (event) => setSearchQuery(event.target.value)
   const onSearchInputChanged = useMemo(() => debounce(setSearchInput, 500), [searchQuery])
 
-  const {data: clubs} = useSWR("https://yaleorgs.com/api/organizations", fetcher);
+  const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
   const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
 
   return (
