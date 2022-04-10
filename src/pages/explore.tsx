@@ -2,9 +2,10 @@ import {Text, SimpleGrid, Box} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
-import {lazy, Suspense, useMemo, useState} from "react"
+import {useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
+import CardGrid from "../components/CardGrid"
 
 
 // Filter list of clubs based on search query
@@ -23,7 +24,6 @@ const fetcher = url => fetch(url, {
 }).then(r => r.json())
 
 
-const LazyCardGrid = lazy(() => import('../components/CardGrid'));
 
 
 const Explore = () => {
@@ -41,9 +41,9 @@ const Explore = () => {
       </Container>
       {/* <Hero /> */}
       <Box p='5'>
-        <Suspense fallback={'Loading...'}>
-          <LazyCardGrid filteredClubs={filteredClubs}></LazyCardGrid>
-        </Suspense>
+        <SimpleGrid minChildWidth='280px' spacing='2'>
+          <CardGrid filteredClubs={filteredClubs}></CardGrid>
+        </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
         </Footer>
