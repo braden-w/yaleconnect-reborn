@@ -22,7 +22,6 @@ import {
 
 import { PhoneIcon } from "@chakra-ui/icons"
 import { NumberInput } from "@chakra-ui/number-input"
-import { SmsCall } from "../components/smsCall"
 
 const sendSMS = (phoneNumber: string, message: string) => {
     let headersList = {
