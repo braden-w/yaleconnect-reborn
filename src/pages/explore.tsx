@@ -1,4 +1,4 @@
-import {Text, SimpleGrid, Box} from "@chakra-ui/react"
+import {Text, SimpleGrid, Box, Flex, Spacer} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
@@ -6,14 +6,19 @@ import {Children, useEffect, useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
 import {MemoizedClubCardTemplate} from "../components/ClubCard"
+import { FilterButton } from "../components/filterButton"
+import { Filter, FilterSharp } from "@material-ui/icons"
 
 
 
 // Filter list of clubs based on search query
-const filterList = (query, list) => {
+const filterList = (query, filters, list) => {
   // return list where website is not null
   if (query === '') return list
-  return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()) || club.mission.toLowerCase().includes(query.toLowerCase()))
+  console.log(filters);
+  return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()) 
+                    || club.mission.toLowerCase().includes(query.toLowerCase())
+                    )
 }
 
 const fetcher = url => fetch(url, {
@@ -50,18 +55,28 @@ const Defer = ({chunkSize, children}) => {
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
+  const [filters, setFilters] = useState([])
   const setSearchInput = (event) => setSearchQuery(event.target.value)
   const onSearchInputChanged = setSearchInput
   // const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
-  var clubs2 = require('../assets/cloud_classifier/club_data_new.json')
+  var clubs2 = require('../assets/cloud_classifier/club_data_newer.json')
   // const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
-  const filteredClubs2 = useMemo(() => filterList(searchQuery, clubs2), [searchQuery, clubs2])
+  const filteredClubs2 = useMemo(() => filterList(searchQuery, filters, clubs2), [searchQuery, filters, clubs2])
+
+  const sendFilters = (finalfilters) => {
+    setFilters(finalfilters);
+  }
+
+  useEffect(() => {
+    sendFilters;
+  }, [filters])
 
   return (
     <>
       <NavBar onSearchInputChanged={onSearchInputChanged} />
-      <Container>
-      </Container>
+        <Flex justify={"right"} paddingRight={4}>
+          <FilterButton filters={sendFilters} />
+        </Flex>
       {/* <Hero /> */}
       <Box p='5'>
         <SimpleGrid minChildWidth='280px' spacing='2'>
