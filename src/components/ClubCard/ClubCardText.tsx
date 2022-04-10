@@ -1,7 +1,7 @@
 import {Text, Stack, Heading, useColorModeValue, Box} from "@chakra-ui/react";
 import Link from "next/link";
 
-function ClubCardText(props) {
+export default function ClubCardText(props) {
 	return (<Stack>
 		<Heading color={useColorModeValue('gray.700', 'white')} textTransform={'uppercase'} fontFamily={'body'} fontSize={'2l'} fontWeight={800} letterSpacing={1.1} noOfLines={[2, 3]}>
 			{props.club.name}
