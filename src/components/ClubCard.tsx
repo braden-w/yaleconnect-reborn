@@ -32,6 +32,7 @@ export function ClubCardTemplate({club}: {club: Club}) {
         </Box>
         <Flex justify={'center'} mt={-12} mb={4}>
           <Avatar
+            loading='lazy'
             size='lg'
             src={club.logo}
             css={{
