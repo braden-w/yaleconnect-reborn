@@ -8,11 +8,10 @@ import useSWR from 'swr'
 import {Club} from "../types/Club"
 
 
+// Filter list of clubs based on search query
 const filterList = (query, list) => {
   if (query === '') return list
-  return list.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())
-    || (club.type && club.type.toLowerCase().includes(query.toLowerCase()))
-    || (club.description && club.description.toLowerCase().includes(query.toLowerCase())))
+  return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()))
 }
 
 const fetcher = url => fetch(url, {
@@ -26,7 +25,7 @@ const fetcher = url => fetch(url, {
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const setSearchInput = (event) => setSearchQuery(event.target.value)
-  const onSearchInputChanged = useMemo(() => debounce(setSearchInput, 500), [searchQuery])
+  const onSearchInputChanged = setSearchInput
 
   const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
   const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
