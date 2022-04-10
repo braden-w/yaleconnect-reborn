@@ -3,14 +3,14 @@ import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
 import {ClubCardTemplate} from "../components/ClubCard"
-import {useMemo, useState} from "react"
+import {useEffect, useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
 
 
 const filterList = (query, list) => {
   if (query === '') return list
-  list.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())
+  return list.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())
     || (club.type && club.type.toLowerCase().includes(query.toLowerCase()))
     || (club.description && club.description.toLowerCase().includes(query.toLowerCase())))
 }
