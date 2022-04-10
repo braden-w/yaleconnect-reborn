@@ -5,7 +5,7 @@ import {Footer} from "../components/Footer"
 import {useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
-import CardGrid from "../components/CardGrid"
+import {MemoizedClubCardTemplate} from "../components/ClubCard"
 
 
 // Filter list of clubs based on search query
@@ -42,7 +42,7 @@ const Explore = () => {
       {/* <Hero /> */}
       <Box p='5'>
         <SimpleGrid minChildWidth='280px' spacing='2'>
-          <CardGrid filteredClubs={filteredClubs}></CardGrid>
+          {filteredClubs && filteredClubs.map(club => <MemoizedClubCardTemplate club={club} />)}
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
