@@ -16,7 +16,7 @@ import {SearchBar} from "./SearchBar"
 import {FilterButton} from "./filterButton"
 // import { SearchBar } from "./SearchBar"
 
-const Links = ["Dashboard", "Projects", "Team"]
+const Links = ["Explore", "Alerts"]
 
 const NavLink = ({children}: {children: ReactNode}) => (
   <Link
@@ -27,7 +27,7 @@ const NavLink = ({children}: {children: ReactNode}) => (
       textDecoration: "none",
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={"#"}
+    href={`${children}`.toLowerCase()}
   >
     {children}
   </Link>
