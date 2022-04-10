@@ -46,13 +46,6 @@ const Defer = ({chunkSize, children}) => {
   return <>{childrenArray.slice(0, renderedItemsCount)}</>;
 };
 
-const Cards = ({filteredClubs}) => {
-  return (
-    <Defer chunkSize={10}>
-      {filteredClubs && filteredClubs.map(club => <MemoizedClubCardTemplate key={club.id} club={club} />)}
-    </Defer>
-  );
-};
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
@@ -70,7 +63,9 @@ const Explore = () => {
       {/* <Hero /> */}
       <Box p='5'>
         <SimpleGrid minChildWidth='280px' spacing='2'>
-          <Cards filteredClubs={filteredClubs} />
+          <Defer chunkSize={30}>
+            {filteredClubs && filteredClubs.map(club => <MemoizedClubCardTemplate key={club.id} club={club} />)}
+          </Defer>
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
