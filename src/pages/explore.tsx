@@ -16,6 +16,14 @@ const filterListMatchingQuery = (query, list) => {
   return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()) || club.mission.toLowerCase().includes(query.toLowerCase()))
 }
 
+// Returns all elements of an array that have a category that is in listOfCategoriesParsed
+const filterListMatchingCategories = (listOfCategoriesParsed, list) => {
+  // return list where website is not null
+  if (listOfCategoriesParsed === []) return list
+  // return all clubs where club.categories has an object with category in listOfCategoriesParsed
+  return list.filter(club => club.categories.some(({category}) => listOfCategoriesParsed.includes(category)))
+}
+
 const fetcher = url => fetch(url, {
   method: "POST",
   headers: {
@@ -50,11 +58,12 @@ const Defer = ({chunkSize, children}) => {
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
+  const [searchCategories, setSearchCategories] = useState([])
   const onSearchInputChanged = (event) => setSearchQuery(event.target.value)
   // const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
   var clubs2 = require('../assets/cloud_classifier/club_data_new.json')
   // const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
-  const filteredClubs2 = useMemo(() => filterListMatchingQuery(searchQuery, clubs2), [searchQuery, clubs2])
+  const filteredClubs2 = useMemo(() => filterListMatchingCategories(searchCategories, filterListMatchingQuery(searchQuery, clubs2)), [searchQuery, clubs2])
 
   return (
     <>
