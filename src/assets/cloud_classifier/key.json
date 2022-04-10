@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "yaleclubs",
+  "private_key_id": "0d03b12280122110d7d667691485bb7cccf9e14f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDS/qKBSGdkWcSY\nYGlWK2FOpbKO9X5wYx5/WQ73DSRSxk35yMuUxZQUnZEu0e5GEGLWnh7cSxloLpFp\nVVDs5QgrJtfHN/IajGSGSL3j9Ok3AYBTMQtIFQh6m1sB0QO8A0wfW4Sb5lGUe8HI\nJ3yn0MiNsBjmAeu8KEWlbP172/Uegofa+sQcTcU9zB7llGeooyieaCk3DZ+Y5bew\nh3H8sF3bSwRNgdcyhfPgUVmtazF38CBYAb8dacc519ISmIkOAg0ZmMz7uzHFF4Jz\nLA+SDbu/dK+q0Gg8w7RGTwNcJqwqPH43KvcQkiu/cJ8/E3+XzUWLnhG+PUmylBqT\nTGUmBRoPAgMBAAECggEABwX119LWqjb4vc+7weQIxarrUinmzwvlmHyY7G1SD7VN\nJCrkZ+vZvYPvML1JLqjd+WHjChcv3dFrArQV0QTgrDsLRLTeiLayo+uo8n0VBEE3\nCc3gn8IfeaFROrK/6pK7hnGv7NaSUZx6+1QhKJ7hBiJd+c4HkEhQ5SxHFcfhFWZY\na0Q7onvgpyqS7/PTvcMwF9xtDNMfSf+++mjZgHleg4f2h7hDaDIT7RVLsmHxKrYO\n4QnTOiid7fdVqVjy5fIlaFE+evVw2TSOLrYNidxrdOHfypUF4yq3myMZiIKKeTCy\n3CroR8deq3aIJqeJurGXOWTkwXhwHDdaGl+yZrklOQKBgQD1r601Yoi0/isltPB1\nfNF+DEusWZH5+V6I8ddOKSHZq8k0MQmNZ3euzFXcbfFsrcbAaqYjRhRhXEJhuIyn\nZ94JY23nbXKWp62vRTHMMfwVscYoEX2b6YhLcMQts0kxsXlJmXvL3kIjd3R/hXzI\ninNShF07bsRqFZleeU2a/1/YhwKBgQDb2iMlnOZvAP7meDFyqM44rSiGz3+BlRRq\nok84CAcJY9kdTm0+EB5GHYU5zyetICcxcfCc1y0E3ZyGCks4y0bigXWdL3lFMn0z\nbzJi1dXDPP5syhq1TVouljUmFyp2VlvQWw52oYsQzwgUjgePp2UbdRRX/6awepmm\nA17AAm/8OQKBgQDxxcCw8VdQrXLud2HObFeIMDdj0v05PrJOF5fmXcnm+AtXZg5d\nbf20MXcpJbRYW6ZkAk+eFL/Hk8/rdH5N24QAPy2PegAyy6269l/r7yCAhOJY2eV/\nQdCTVNRpmK4lzd1qlTTjScRSPKKTP1ytyLl18bYB355AOyMjekHpjvfWDwKBgDt/\nZVOgipwv4MvuazNki6q68eTJ8u/WsJfLJTU8turLos5Tkyzgn9DJ3Gwwq8Qml3TC\nKSPI994BO4Lq9kCAgsZ50qKfXmpjp45r4W7t/9O+hfxbFa9LJ8TD0c5lJpCv/lj8\ny4U/YqtB3CXz6gfufWZY4RCPl0TbaQmMj+/WuQfBAoGAGCteKHQOgV1kQrgAPQag\nmgFkpmjH75+H0dSJ8mDla6TMAkZhHB60y7ISvFZHclO6up0lOKuRNWnMO7RQG5zC\nHuv6wU6uRpm7ZLRQohDlfWVe/fXCkYFkZLLHT9SCd3wIaf+FHyCvoeRw70Wlm7zM\nMCfPptpGwpZg1Oc0xWi4yJo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "my-nl-sa@yaleclubs.iam.gserviceaccount.com",
+  "client_id": "109391765918965709673",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/my-nl-sa%40yaleclubs.iam.gserviceaccount.com"
+}
