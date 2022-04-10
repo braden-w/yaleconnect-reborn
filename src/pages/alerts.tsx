@@ -22,12 +22,47 @@ import {
 
 import { PhoneIcon } from "@chakra-ui/icons"
 import { NumberInput } from "@chakra-ui/number-input"
+import { SmsCall } from "../components/smsCall"
+
+const sendSMS = (phoneNumber: string, message: string) => {
+    let headersList = {
+        "Content-Type": "application/json"
+       }
+       
+       let bodyContent = JSON.stringify({
+         "phone": phoneNumber,
+         "body": message,
+       });
+       
+       fetch("INSERT PLACE HERE", { 
+         method: "POST",
+         body: bodyContent,
+         headers: headersList
+       }).then(function(response) {
+         return response.text();
+       }).then(function(data) {
+         console.log(data);
+       })
+}
 
 const alert = () => {
-
+    // create handleSubmit function
+    const [formData, setFormData] = useState({
+        club: "",
+        title: "",
+        date: "",
+        time: "",
+        details: "",
+      })
+    const handleSubmit = (e: any) => {
+        e.preventDefault()
+        var msg = "";
+        msg += "Club: " + formData.club + "\n" + "Title: " + formData.title + "\n" + "Date: " + formData.date + "\n" + "Time: " + formData.time + "\n" + "Details: " + formData.details;
+        sendSMS("PHONE", msg);
+    }
     return (
         <>
-        <NavBar handleSearchInput={undefined} />
+        <NavBar onSearchInputChanged={""}/>
         <Box minH={"90vh"} overflow={"hidden"} bg={useColorModeValue("#4b8bd9", "#4b8bd9")}>
             <Stack minH={"90vh"} overflow={"hidden"} direction={{ base: "column", md: "row" }}>
                 <Flex p={10} flex={1}>
@@ -69,35 +104,40 @@ const alert = () => {
 
                         </Text>
                         <Stack direction={{ base: "column", md: "row" }}>
-                        <form >
-                            <FormControl isRequired>
+                        <form onSubmit={handleSubmit}>
+                            <FormControl >
                                 <Grid templateRows='repeat(3, 1fr)'
                                     templateColumns='repeat(2, 1fr)'
                                     gap={2}
                                     >
                                     <GridItem colSpan={1}>
                                         <FormLabel htmlFor="club" color={"white"}>Club</FormLabel>
-                                        <Input id="club" width='auto' color="white" />
+                                        <Input id="club" color="white" value={formData.club}
+                                            onChange={(e) => setFormData({...formData, club: e.target.value})} />
                                         <FormErrorMessage>This field is required</FormErrorMessage>
                                     </GridItem>
                                     <GridItem colSpan={1}>
                                         <FormLabel htmlFor="EventTitle" color={"white"}>Event Title</FormLabel>
-                                        <Input id="EventTitle" color="white" />
+                                        <Input id="EventTitle" color="white" value={formData.title} 
+                                            onChange={(e) => setFormData({...formData, title: e.target.value})} />
                                         <FormErrorMessage>This field is required</FormErrorMessage>
                                     </GridItem>
                                     <GridItem colSpan={1}>
                                         <FormLabel htmlFor="EventDate" color={"white"}>Event Date</FormLabel>
-                                        <Input id="EventDate" type="date" color="white" />
+                                        <Input id="EventDate" type="date" color="white" value={formData.date} 
+                                            onChange={(e) => setFormData({...formData, date: e.target.value})} />
                                         <FormErrorMessage>This field is required</FormErrorMessage>
                                     </GridItem>
                                     <GridItem colSpan={1}>
                                         <FormLabel htmlFor="EventTime" color={"white"}>Event Time</FormLabel>
-                                        <Input id="EventTime" type="time" color="white" />
+                                        <Input id="EventTime" type="time" color="white" value={formData.time}
+                                            onChange={(e) => setFormData({...formData, time: e.target.value})} />
                                         <FormErrorMessage>This field is required</FormErrorMessage>
                                     </GridItem>
                                     <GridItem colSpan={2}>
-                                        <FormLabel htmlFor="EventDetails" color={"white"}>Event Details</FormLabel>
-                                        <Textarea id="EventDetails" color="white" />
+                                        <FormLabel htmlFor="EventDetails" color={"white"} >Event Details</FormLabel>
+                                        <Input id="EventDetails" color="white" value={formData.details} 
+                                            onChange={(e) => setFormData({...formData, details: e.target.value})}/>
                                         <FormErrorMessage>This field is required</FormErrorMessage>
                                     </GridItem>
                                 </Grid>
@@ -107,7 +147,6 @@ const alert = () => {
                                 <Text>Submit</Text>
                             </Button>   
                         </form>
-                        
                         </Stack>
                     </Stack>
                 </Flex>
