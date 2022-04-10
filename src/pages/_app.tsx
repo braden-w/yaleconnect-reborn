@@ -6,9 +6,7 @@ import {AppProps} from 'next/app'
 function MyApp({Component, pageProps}: AppProps) {
   return (
     <ChakraProvider resetCSS theme={theme}>
-      <ClubsProvider>
-        <Component {...pageProps} />
-      </ClubsProvider>
+      <Component {...pageProps} />
     </ChakraProvider>
   )
 }
