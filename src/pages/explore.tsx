@@ -10,8 +10,9 @@ import {Club} from "../types/Club"
 
 // Filter list of clubs based on search query
 const filterList = (query, list) => {
+  // return list where website is not null
   if (query === '') return list
-  return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()))
+  return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()) || club.mission.toLowerCase().includes(query.toLowerCase()))
 }
 
 const fetcher = url => fetch(url, {
