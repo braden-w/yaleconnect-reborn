@@ -36,7 +36,7 @@ export const FilterButton = ({onSearchCategoriesChanged}) => {
                                     key={index}
                                     value={title}
                                     onChange={onSearchCategoriesChanged}
-                                    isChecked={checked}
+                                    checked={checked}
                                 >
                                     {title}
                                 </Checkbox>

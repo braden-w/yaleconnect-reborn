@@ -35,6 +35,12 @@ const NavLink = ({children}: {children: ReactNode}) => (
 
 export function NavBar({onSearchInputChanged, onSearchCategoriesChanged}) {
   const {isOpen, onOpen, onClose} = useDisclosure()
+  const [filterArr, setFilterArr] = useState([]);
+
+  // const childToParent = (filters) => {
+  //   setFilterArr(filters);
+  // }
+
 
   return (
     <>

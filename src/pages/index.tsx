@@ -22,11 +22,11 @@ export default function Home() {
                 Yale
               </Text>
               <Text color={'#00356b'} as={'span'}>
-                Orgs
+                Clubs
               </Text>
             </Heading>
             <Text fontSize={{ base: '3xl', lg: '3xl' }} color={'white'}>
-              Easily find the organizations you want to join.
+              Easily explore the clubs and organizations Yale has to offer.
             </Text>
             <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
               <Button
@@ -40,7 +40,7 @@ export default function Home() {
                 size="lg"
               >
                 <Link href="/explore">
-                  <Text fontSize={'3xl'}>Explore Organizations</Text>
+                  <Text fontSize={'3xl'}>Explore!</Text>
                 </Link>
               </Button>
             </Stack>
