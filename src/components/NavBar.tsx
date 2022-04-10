@@ -50,7 +50,7 @@ export function NavBar({onSearchInputChanged}) {
           <HStack spacing={8} alignItems={"center"}>
             <Link _hover={{
               textDecoration: "none", bg: useColorModeValue("gray.200", "gray.700")
-            }} key={'/explore'} href='/explore' > <Heading size="lg">YaleClubs</Heading></Link>
+            }} href='explore' > <Heading size="lg">YaleClubs</Heading></Link>
             {/* Insert Search Bar and Input*/}
             <IconButton
               size={"md"}
