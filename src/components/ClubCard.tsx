@@ -1,7 +1,7 @@
 import {
   Center,
 } from '@chakra-ui/react';
-import {lazy, Suspense} from 'react';
+import {lazy, memo, Suspense} from 'react';
 import {Club} from '../types/Club';
 import ClubCardText from './ClubCard/ClubCardText';
 
@@ -20,3 +20,5 @@ export function ClubCardTemplate({club}: {club: Club}) {
     </Center >
   );
 }
+
+export const MemoizedClubCardTemplate = memo(ClubCardTemplate);

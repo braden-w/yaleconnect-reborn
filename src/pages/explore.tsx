@@ -2,8 +2,8 @@ import {Text, SimpleGrid, Box} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
-import {ClubCardTemplate} from "../components/ClubCard"
-import {useEffect, useMemo, useState} from "react"
+import {MemoizedClubCardTemplate} from "../components/ClubCard"
+import {useMemo, useState} from "react"
 import useSWR from 'swr'
 import {Club} from "../types/Club"
 
@@ -41,7 +41,7 @@ const Explore = () => {
           minChildWidth='280px'
           spacing='2'
         >
-          {filteredClubs && filteredClubs.map((club) => (<ClubCardTemplate club={club} />))}
+          {filteredClubs && filteredClubs.map((club) => (<MemoizedClubCardTemplate club={club} />))}
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
