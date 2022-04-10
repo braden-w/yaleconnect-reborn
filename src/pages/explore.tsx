@@ -10,7 +10,7 @@ import {MemoizedClubCardTemplate} from "../components/ClubCard"
 
 
 // Filter list of clubs based on search query
-const filterList = (query, list) => {
+const filterListMatchingQuery = (query, list) => {
   // return list where website is not null
   if (query === '') return list
   return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()) || club.mission.toLowerCase().includes(query.toLowerCase()))
@@ -50,12 +50,11 @@ const Defer = ({chunkSize, children}) => {
 
 const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
-  const setSearchInput = (event) => setSearchQuery(event.target.value)
-  const onSearchInputChanged = setSearchInput
+  const onSearchInputChanged = (event) => setSearchQuery(event.target.value)
   // const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
   var clubs2 = require('../assets/cloud_classifier/club_data_new.json')
   // const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
-  const filteredClubs2 = useMemo(() => filterList(searchQuery, clubs2), [searchQuery, clubs2])
+  const filteredClubs2 = useMemo(() => filterListMatchingQuery(searchQuery, clubs2), [searchQuery, clubs2])
 
   return (
     <>
