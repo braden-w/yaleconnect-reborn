@@ -17,12 +17,10 @@ export default function ClubCardText({club}: {club: Club}) {
 		{
 			/* External link to club.website */
 		}
-		<Link href={club.website}>
-			<Text color={'blue.500'}>Website</Text>
-		</Link>
-		{
-			/* Insert text for club.mission.*/
-		}
+		{club.website &&
+			<Link href={club.website}>
+				<Text color={'blue.500'}>Website</Text>
+			</Link>}
 		<Text color={'gray.500'} fontSize='sm' noOfLines={[1, 2]}>
 			{club.mission}
 		</Text>
