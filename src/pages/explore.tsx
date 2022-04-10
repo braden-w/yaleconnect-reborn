@@ -10,7 +10,9 @@ import {Club} from "../types/Club"
 
 const filterList = (query, list) => {
   if (query === '') return list
-  list.filter((club) => club.name.toLowerCase().includes(query.toLowerCase()) || club.type.toLowerCase().includes(query.toLowerCase()) || club.description.toLowerCase().includes(query.toLowerCase()))
+  list.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())
+    || (club.type && club.type.toLowerCase().includes(query.toLowerCase()))
+    || (club.description && club.description.toLowerCase().includes(query.toLowerCase())))
 }
 
 const fetcher = url => fetch(url, {
