@@ -12,6 +12,7 @@
     "@emotion/react": "11.1.5",
     "@emotion/styled": "11.1.5",
     "@material-ui/icons": "^4.11.3",
+    "@types/requestidlecallback": "^0.3.4",
     "framer-motion": "^4.0.3",
     "next": "^12.1.4",
     "react": "^18.0.0-rc.3",
