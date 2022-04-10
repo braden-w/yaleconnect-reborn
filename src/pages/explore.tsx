@@ -2,23 +2,33 @@ import {Text, SimpleGrid, Box} from "@chakra-ui/react"
 import {NavBar} from "../components/NavBar"
 import {Container} from "../components/Container"
 import {Footer} from "../components/Footer"
-import {ClubCardTemplate} from "../components/ClubCard"
+import {MemoizedClubCardTemplate} from "../components/ClubCard"
 import {useMemo, useState} from "react"
+import useSWR from 'swr'
 import {Club} from "../types/Club"
 
 
+// Filter list of clubs based on search query
 const filterList = (query, list) => {
   if (query === '') return list
-  return list.filter((club) => club.name.toLowerCase().includes(query.toLowerCase())) ||
-    list.filter((club) => club.goals.toLowerCase().includes(query.toLowerCase())) ||
-    list.filter((club) => club.type.toLowerCase().includes(query.toLowerCase()))
-
+  return list.filter(club => club.name.toLowerCase().includes(query.toLowerCase()))
 }
-const Explore = ({clubs}: {clubs: Club[]}) => {
+
+const fetcher = url => fetch(url, {
+  method: "POST",
+  headers: {
+    Authorization:
+      "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDk1MTk4MzAsInN1YiI6ImJtdzUyIn0.5EDjGl1x-fum37VsQzjcWphGODQU-Mg1CtPGJddQ9Yk",
+  },
+}).then(r => r.json())
+
+const Explore = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const setSearchInput = (event) => setSearchQuery(event.target.value)
-  const onSearchInputChanged = useMemo(() => debounce(setSearchInput, 500), [searchQuery])
-  const filteredClubs = filterList(searchQuery, clubs);
+  const onSearchInputChanged = setSearchInput
+
+  const {data: clubs} = useSWR<Club[]>("https://yaleorgs.com/api/organizations", fetcher);
+  const filteredClubs = useMemo(() => filterList(searchQuery, clubs), [searchQuery, clubs])
 
   return (
     <>
@@ -31,7 +41,7 @@ const Explore = ({clubs}: {clubs: Club[]}) => {
           minChildWidth='280px'
           spacing='2'
         >
-          {filteredClubs.map((club) => (<ClubCardTemplate club={club} />))}
+          {filteredClubs && filteredClubs.map((club) => (<MemoizedClubCardTemplate club={club} />))}
         </SimpleGrid>
         <Footer>
           <Text>Built with ❤ and ☕</Text>
@@ -40,26 +50,6 @@ const Explore = ({clubs}: {clubs: Club[]}) => {
 
     </>
   )
-}
-
-// This gets called on every request
-export async function getStaticProps() {
-  // Fetch clubs from external API
-  const res = await fetch("https://yaleorgs.com/api/organizations", {
-    method: "POST",
-    headers: {
-      Authorization:
-        "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NDk1MTk4MzAsInN1YiI6ImJtdzUyIn0.5EDjGl1x-fum37VsQzjcWphGODQU-Mg1CtPGJddQ9Yk",
-    },
-  })
-  const clubs = await res.json()
-
-  // Pass clubs to the page via props
-  return {
-    props: {clubs},
-    // Revalidates the page every 10 seconds
-    revalidate: 10,
-  }
 }
 
 export default Explore
